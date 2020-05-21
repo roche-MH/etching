@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!----add icon link---->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!----add jquery link---->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+    <link rel="stylesheet" href="input.css" />
+    <link rel="stylesheet" href="mainframe.css" />
+
+    <title>BeautyGAN Project tmp</title>
+</head>
+
+<body>
+    <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="input.js"></script>
+    <script src="mainframe.js"></script>
+
+    <div class="main-container">
+        <div class="nav-top">
+            <ul>
+                <li class="nav-start"><a><i class="fas fa-camera" style="color:black;"></i></a></li>
+                <li class="nav-img"><a><img src="b&a.jpg" /></a></li>
+                <li class="nav-end"><a><i class="fas fa-location-arrow" style="color:black;"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <form method="POST" action="output" enctype="multipart/form-data">
+        <div class="file-upload">
+            <button class="file-upload-btn" type="button">Source Image</button>
+            <div class="image-upload-wrap">
+                <input class="file-upload-input" type='file' name="srcimg" onchange="readURL(this);" accept="image/*" />
+                <div class="defaut-upload-image">
+                    <a><img src="uploade_srcimg.PNG" width=80% class="center"/></a>
+                </div>
+            </div>
+            <div class="file-upload-content">
+                <img class="file-upload-image" src="#" alt="your image" />
+                <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image">Remove
+                        <span class="image-title">Uploaded Image</span></button>
+                </div>
+            </div>
+
+            <button class="file-upload-btn" type="button">Reference Image</button>
+            <div class="image-upload-wrap">
+                <input class="file-upload-input" type='file' name="srcimg" onchange="readURL(this);" accept="image/*" />
+                <div class="defaut-upload-image">
+                    <a><img src="uploade_refimg.PNG" width=80% class="center"/></a>
+                </div>
+            </div>
+            <div class="file-upload-content">
+                <img class="file-upload-image" src="#" alt="your image" />
+                <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image">Remove
+                        <span class="image-title">Uploaded Image</span></button>
+                </div>
+            </div>
+
+            <br>
+            <input type="submit" class="file-upload-btn" value="Show Result" />
+        </div>
+    </form>
+</body>
+
+<div class="main-container">
+    <div class="nav-bottom">
+        <ul>
+            <li><a class="tab active" href="Home"><i class="fas fa-home"></i></a></li>
+            <li><a class="tab" href="Search"><i class="fas fa-search"></i></a></li>
+            <li> <a class="tab" href="Upload"> <i class="fas fa-plus"></i></a></li>
+            <li><a class="tab" href="Users"><i class="fas fa-heart"></i></a></li>
+            <li><a class="tab" href="Profile"><i class="fas fa-user"></i></a></li>
+        </ul>
+    </div>
+</div>
+
+</html>
