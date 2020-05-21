@@ -481,19 +481,21 @@ iframe {
 }
 
 .thumnail {
+  position: relative;
   width:100%;
   min-height:200px;
   border: 0px!important;
   padding: 0px;
   border-radius: 0;
   border: 0px!important;
+  z-index: 1;
 }
 
 #srcBtn {
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: -30%;
     z-index: 10;
-    right: 10%;
+    right: -35%;
     font-size: 40px;
     color: magenta;
     opacity: 0.5;
@@ -510,9 +512,10 @@ iframe {
 }
 
 .functionBtn {
-  margin-top: 20%;
+  margin-top: 15%;
   margin-bottom: 25%;
   text-align: center;
+  word-spacing:1
 }
 
 .nav-top{
@@ -596,4 +599,11 @@ li a img{
   color:#ccc;
   cursor:pointer;
  
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ icon ]*/
+
+.far fa-save{
+  size: 10%;
 }
