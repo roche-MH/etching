@@ -31,7 +31,7 @@
         <div class="nav-top">
             <ul>
                 <li class="nav-start"><a><i class="fas fa-camera" style="color:black;"></i></a></li>
-                <li class="nav-img"><a><img src="b&a.jpg" /></a></li>
+                <li class="nav-img"><a><img src="title_img.png" /></a></li>
                 <li class="nav-end"><a><i class="fas fa-location-arrow" style="color:black;"></i></a></li>
             </ul>
         </div>
@@ -41,7 +41,7 @@
         <div class="file-upload">
             <button class="file-upload-btn" type="button">Source Image</button>
             <div class="image-upload-wrap">
-                <input class="file-upload-input" type='file' name="srcimg" onchange="readURL(this);" accept="image/*" />
+                <input class="file-upload-input" type='file' name="srcimg" onchange="srcURL(this);" accept="image/*" />
                 <div class="defaut-upload-image">
                     <a><img src="uploade_srcimg.PNG" width=80% class="center"/></a>
                 </div>
@@ -50,13 +50,13 @@
                 <img class="file-upload-image" src="#" alt="your image" />
                 <div class="image-title-wrap">
                     <button type="button" onclick="removeUpload()" class="remove-image">Remove
-                        <span class="image-title">Uploaded Image</span></button>
+                        <span class="image-title"></span></button>
                 </div>
             </div>
 
             <button class="file-upload-btn" type="button">Reference Image</button>
             <div class="image-upload-wrap">
-                <input class="file-upload-input" type='file' name="srcimg" onchange="readURL(this);" accept="image/*" />
+                <input class="file-upload-input" type='file' name="srcimg" onchange="refURL(this);" accept="image/*" />
                 <div class="defaut-upload-image">
                     <a><img src="uploade_refimg.PNG" width=80% class="center"/></a>
                 </div>
@@ -65,12 +65,12 @@
                 <img class="file-upload-image" src="#" alt="your image" />
                 <div class="image-title-wrap">
                     <button type="button" onclick="removeUpload()" class="remove-image">Remove
-                        <span class="image-title">Uploaded Image</span></button>
+                        <span class="image-title"></span></button>
                 </div>
             </div>
 
             <br>
-            <input type="submit" class="file-upload-btn" value="Show Result" />
+            <input type="submit" class="file-upload-btn-submit" value="Show Result" />
         </div>
     </form>
 </body>

@@ -12,42 +12,65 @@ body {
 
   .file-upload {
     background-color: #ffffff;
-    width: 80%;
-    margin-left: 10%;
+    width: 100%;
+    margin: 0 auto;
     padding: 20px;
   }
   
   .file-upload-btn {
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 15%;
+    color: #fff;
+    background: #a64bf4;
+    background: -webkit-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -o-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -moz-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    border: solid;
+    padding: 2%;
+    border-radius: 20px;
+
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    left: 0;
+  }
+  .file-upload-btn-submit{
     width: 80%;
     margin-left: 10%;
-    margin-top: 50px;
+    margin-top: 15%;
     color: #fff;
-    background: #1FB264;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    border-bottom: 4px solid #15824B;
-    transition: all .2s ease;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-  
-  .file-upload-btn:hover {
-    background: #1AA059;
-    color: #ffffff;
-    transition: all .2s ease;
+    background: #a64bf4;
+    background: -webkit-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -o-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -moz-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    border: solid;
+    padding: 2%;
+    border-radius: 20px;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    left: 0;
     cursor: pointer;
   }
+
   
   .file-upload-btn:active {
     border: 0;
     transition: all .2s ease;
+    border: solid;
   }
   
   .file-upload-content {
     display: none;
     text-align: center;
+    border: solid;
   }
   
   .file-upload-input {
@@ -63,13 +86,15 @@ body {
   
   .image-upload-wrap {
     margin-top: 20px;
-    border: 4px dashed #1FB264;
+    border: 4px dashed black;
     position: relative;
+    opacity: 30%;
+    z-index: 10;
   }
   
   .image-dropping,
   .image-upload-wrap:hover {
-    background-color: #1FB264;
+
     border: 4px dashed #ffffff;
   }
   
@@ -104,13 +129,15 @@ body {
   }
   
   .remove-image {
-    width: 200px;
+    width: 50px;
+    font-size:20%;
     margin: 0;
+    margin-left: 70%;
     color: #fff;
     background: #cd4535;
     border: none;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 20px;
     border-bottom: 4px solid #b02818;
     transition: all .2s ease;
     outline: none;
