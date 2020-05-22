@@ -1,0 +1,363 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
+}
+
+.main-container{
+    width:100%;
+    max-width:768px;
+    margin:auto;
+    height:100%;
+    
+ }
+     
+.nav-top{
+    
+    width:100%;
+    max-width:768px;
+    margin:auto;
+    top:0;
+    position:fixed;
+     
+}
+.nav-top ul{
+    
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    height:50px;
+    background-color: #ecf0ff;
+    
+}
+li{
+    float:left;
+}
+.nav-start{
+    
+    width:15%;
+    
+}
+.nav-img{
+    
+    width:70%;
+    
+}
+.nav-end{
+    
+    width:15%;
+    
+}
+li a{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    line-height:50px;
+    color:#ccc;
+    cursor:pointer;
+   
+}
+
+
+li a img{
+    
+    width:100px;
+    height:50px;
+}
+
+.container{
+    
+    display:none;
+    
+}
+
+
+
+.container.actives{
+    
+    display:inherit;
+    max-width:768px;
+    width: 100%;
+    margin:auto;
+    height:100%;
+    top:50px;
+    position:fixed;
+    background-color: #f5f7ff;
+    border-left:1px solid #eee;
+    border-right:1px solid #eee;
+    overflow: auto;
+}
+
+
+.nav-bottom{
+    
+    width:100%;
+    max-width:768px;
+    position:fixed;
+    margin:auto;
+    bottom:0;
+    
+   
+}
+.nav-bottom ul{
+    
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    height:50px;
+    background-color: #ecf0ff;
+    
+}
+.nav-bottom li{
+    float:left;
+    width:20%;
+  
+}
+.nav-bottom li a{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    line-height:50px;
+    color:#ccc;
+    cursor:pointer;
+   
+}
+.tab.active{
+    
+    color:black;
+}
+
+.imgslide .title{
+    height: 60px;
+    font-size: 20px;
+    font-weight: 250;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 3%;
+}
+
+.carousel-container{
+    width: 95%;
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+}
+
+.carousel-slide img{
+    height: flex;
+    width: flex;
+}
+
+.carousel-slide{
+    display: flex;
+    width: 192px;
+    height: 150px;
+}
+
+#previousBtn{
+    position: absolute;
+    top: 45%;
+    z-index: 10;
+    left: 5%;
+    font-size: 30px;
+    color: grey;
+    opacity: 0.5;
+    cursor: pointer;
+}
+#nextBtn{
+    position: absolute;
+    top: 45%;
+    z-index: 10;
+    right: 5%;
+    font-size: 30px;
+    color: grey;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.carousel-container2{
+    width: 95%;
+    height: 100px;
+    margin: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+}
+
+.carousel-slide2 img{
+    height: flex;
+    width: flex;
+}
+
+.carousel-slide2{
+    display: flex;
+    width: 192px;
+    height: 150px;
+}
+
+#previousBtn2{
+    position: absolute;
+    top: 45%;
+    z-index: 10;
+    left: 5%;
+    font-size: 30px;
+    color: grey;
+    opacity: 0.5;
+    cursor: pointer;
+}
+#nextBtn2{
+    position: absolute;
+    top: 45%;
+    z-index: 10;
+    right: 5%;
+    font-size: 30px;
+    color: grey;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.carousel-container3{
+    width: 95%;
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+
+}
+
+.carousel-slide3 img{
+    height: flex;
+    width: flex;
+}
+
+.carousel-slide3{
+    display: flex;
+    width: 192px;
+    height: 150px;
+}
+
+#previousBtn3{
+    position: absolute;
+    top: 45%;
+    z-index: 10;
+    left: 5%;
+    font-size: 30px;
+    color: grey;
+    opacity: 0.5;
+    cursor: pointer;
+}
+#nextBtn3{
+    position: absolute;
+    top: 45%;
+    z-index: 10;
+    right: 5%;
+    font-size: 30px;
+    color: grey;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.searchWindow {
+    position: relative;
+    height: 10%;
+    margin-top: 30px;
+    margin-left: 19px;
+    margin-right: 19px;
+    margin-bottom: 19px;
+    align-items: center;
+    justify-content: center;
+    cursor: text;
+}
+
+#searchBtn {
+    position: absolute;
+    margin: 18px 18px 18px 18px;
+    font-size: 25px;
+    color: grey;
+    opacity: 0.7;
+}
+
+.searchWindow .input_text {
+    height: 80%;
+    line-height: normal;
+    padding: 20px 80px;
+    width: 100%;
+    border: unset;
+    border-radius: 2px;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ login ]*/
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .container-login100 {
+    width: 100%;  
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .wrap-login100 {
+    width: 500px;
+    height: 90%;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: block;
+  }
+
+/*//////////////////////////////////////////////////////////////////
+[ Responsive ]*/
+
+@media (max-width: 576px) {
+    .wrap-login100 {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+  
+  .user-image {
+    width:150px;
+    height:1500px;
+    margin:0 auto;
+    background:black;
+    border-radius:10%;
+    overflow:hidden;
+  }
+  
+  .thumnail {
+    position: absolute;
+    width:100%;
+    min-height:200px;
+    border: 0px!important;
+    padding: 0px;
+    border-radius: 0;
+    border: 0px!important;
+    z-index: 1;
+  }
