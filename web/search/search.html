@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>image process 2</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/search.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+			<div class="wrap-login100 p-l-15 p-r-15 p-t-10 p-b-10">
+				<div class="nav-top p-b-30">
+					<ul>
+						<li class="nav-start"><a><i class="fas fa-camera" style="color:black;"></i></a></li>
+						<li class="nav-img"><a><img src="./images/icons/title_img.png" onclick="titleClick(this)"/></a></li>
+						<li class="nav-end"><a><i class="fas fa-location-arrow" style="color:black;"></i></a></li>
+					</ul>
+				</div>
+				<form class="searchWindow">
+					<i class="fas fa-search" id="searchBtn"></i>            
+					<input type="text" class="input_text" placeholder="find"/>
+				</form>
+				<form class="login100-form validate-form">
+					<div id="Home" class="container actives">
+						<div class="slidePage">
+							<div class="imgslide">
+								<div class="title">
+									<p onclick="imageClick(this)">#1</p>
+								</div>
+								<div class="carousel-container 1">
+									<div class="carousel-slide 1">
+										<img src="./img/1.png" alt="">
+										<img src="./img/2.png" alt="">
+										<img src="./img/3.png" alt="">
+										<img src="./img/4.png" alt="">
+										<img src="./img/5.png" alt="" onclick="imageClick(this)">
+									</div>
+								</div>
+								<div class="title">
+									<p>#2</p>
+								</div>
+								<div class="carousel-container 2">
+									<div class="carousel-slide 2">
+										<img src="./img/1.png" alt="">
+										<img src="./img/2.png" alt="">
+										<img src="./img/3.png" alt="">
+										<img src="./img/4.png" alt="">
+										<img src="./img/5.png" alt="" onclick="imageClick(this)">
+									</div>
+								</div>
+								<div class="title">
+									<p>#3</p>
+								</div>
+								<div class="carousel-container 3">
+									<div class="carousel-slide 3">
+										<img src="./img/1.png" alt="">
+										<img src="./img/2.png" alt="">
+										<img src="./img/3.png" alt="">
+										<img src="./img/4.png" alt="">
+										<img src="./img/5.png" alt="" onclick="imageClick(this)">
+									</div>
+								</div>
+							</div>
+						</div>            
+					</div>
+				</form>
+				<div class="nav-bottom">
+					<ul>
+						<li><a class="tab active"  href="Home"><i class="fas fa-home"></i></a></li>
+						<li><a class="tab"  href="Search"><i class="fas fa-search"></i></a></li>
+						<li> <a class="tab" href="Upload" > <i class="fas fa-plus"></i></a></li>
+						<li><a class="tab" href="Users"><i class="fas fa-heart"></i></a></li>
+						<li><a class="tab" href="Profile"><i class="fas fa-user"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+</html>
