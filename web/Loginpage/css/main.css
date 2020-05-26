@@ -444,7 +444,7 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Social item ]*/
 .login100-social-item {
-  font-size: 25px;
+  font-size: px;
   color: #fff;
 
   display: -webkit-box;
@@ -457,7 +457,7 @@ iframe {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin: 5px;
+  margin: 10px;
 }
 
 .login100-social-item:hover {
