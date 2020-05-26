@@ -29,8 +29,8 @@ body {
   .user-image {
     width:100px;
     height:100px;
-    margin-top: 20%;
-    margin-left: 10%;
+    margin-top: 15%;
+    margin-left: 20%;
     border-radius:50%;
     overflow:hidden;
   }
@@ -45,3 +45,27 @@ body {
     border: 0px!important;
     z-index: 1;
   }
+
+   /* ////////////////////////////////////////// */
+
+   .textarea-image{
+     margin-left: 15%;
+     border: 0px!important;
+     position: relative;
+   }
+
+   .textarea-tag{
+    margin-left: 10%;
+    margin-top: 3%;
+    border: 0px!important;    
+    position: relative;
+  }
+
+    /* ////////////////////////////////////////// */
+    .upload-btn{
+      width: 40%;
+      height: 30px;
+      margin-left: 30%;
+      margin-top: 3%;
+      position: absolute;
+    }

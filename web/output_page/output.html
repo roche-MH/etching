@@ -33,14 +33,14 @@
         <div class="nav-top">
 			<!-- 뒤로가기 버튼 + 업로드 버튼 추가 -->
             <ul>
-                <li class="nav-start"><a><i class="fas fa-camera" style="color:black;"></i></a></li>
-                <li class="nav-img"><a><img src="title_img.png" /></a></li>
-                <li class="nav-end"><a><i class="fas fa-location-arrow" style="color:black;"></i></a></li>
+                <!-- <li class="nav-start"><a><i class="fas fa-camera" style="color:black;"></i></a></li> -->
+				<li class="nav-img"><a><img src="title_img.png"/></a></li>				
+                <!-- <li class="nav-end"><a><i class="fas fa-location-arrow" style="color:black;"></i></a></li> -->
             </ul>
         </div>
     </div>
 
-	<table style="margin-top: 50px;">
+	<table style="margin-top: 60px;">
 	<tr>
 		<td>
 			<div class="user-image">
@@ -50,27 +50,32 @@
 
 		<form method="POST" action="upload" enctype="multipart/form-data"></form>
 		<td>
-			<textarea cols="30" rows="10" placeholder="이미지 설명 입력"></textarea>
+			<textarea class="textarea-image" cols="30" rows="10" placeholder="이미지 설명 입력"></textarea>
 		</td>
 	</tr>
 	</table>
-	<table>
+	<table style="margin-bottom: 60px;">
 	<tr>
 		<td>
-			# Tag1<br><!--Icon으로 대체-->
-			<textarea cols=45 rows="5" placeholder="해시태그 내용 입력"></textarea>
+			<br># Tag1<br><!--Icon으로 대체-->
+			<textarea class="textarea-tag" cols=45 rows="3" placeholder="해시태그 내용 입력"></textarea>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			# Tag2<br><!--Icon으로 대체-->
-			<textarea cols="45" rows="5" placeholder="화장품 제품 정보 입력"></textarea>
+			<br># Tag2<br><!--Icon으로 대체-->
+			<textarea class="textarea-tag" cols="45" rows="3" placeholder="화장품 제품 정보 입력"></textarea>
 		</td>
 	</tr>	
 	<tr>
 		<td>
-			# Link<br><!--Icon으로 대체-->
-			<textarea cols="45" rows="5" placeholder="링크 입력"></textarea>
+			<br># Link<br><!--Icon으로 대체-->
+			<textarea class="textarea-tag" cols="45" rows="3" placeholder="링크 입력"></textarea>
+		</td>
+	</tr>	
+	<tr>
+		<td>
+			<button class="upload-btn" type="submit">UPLOAD</button>
 		</td>
 	</tr>	
 		</form>
