@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="input.css" />
     <link rel="stylesheet" href="mainframe.css" />
 
-    <title>BeautyGAN Project tmp</title>
+    <title>Etching</title>
 </head>
 
 <body>
@@ -37,58 +37,47 @@
         </div>
     </div>
 
-    <form method="POST" action="../imgprocess/imgprocess.html" enctype="multipart/form-data">
+    <form method="POST" action="output" enctype="multipart/form-data">
         <div class="file-upload">
-            <button class="file-upload-btn" type="button">Source Image</button>
-            <div class="image-upload-wrap">
-                <input class="file-upload-input" type='file' name="srcimg" onchange="srcURL(this);" accept="image/*" />
+            <!-- Source Image Area -->
+            <div class="srcimg-upload-wrap">
+                <input class="file_upload_input_src" type='file' name="srcimg" onchange="srcURL(srcimg);" accept="image/*" />
                 <div class="defaut-upload-image">
-                    <a><img src="uploade_srcimg.PNG" width=80% class="center"/></a>
+                    <a class="text_center"><img src="uploade_srcimg.PNG" width=80% class="img_center"/>Source Image</a>
                 </div>
             </div>
-            <div class="file-upload-content">
-                <img class="file-upload-image" src="#" alt="your image" />
-                <div class="image-title-wrap">
-                    <button type="button" onclick="removeUpload()" class="remove-image">Remove
-                        <span class="image-title"></span></button>
-                </div>
+            <div class="file-upload-content_src">
+                <img class="file-upload-image_src" src="#" alt="your image" />
+                <button type="button" onclick="removeUpload_src()" class="remove-srcimg">Remove</button>
             </div>
 
-            <button class="file-upload-btn" type="button">Reference Image</button>
-            <div class="image-upload-wrap">
-                <input class="file-upload-input" type='file' name="srcimg" onchange="refURL(this);" accept="image/*" />
+            <!-- Reference Image Area -->
+            <div class="refimg-upload-wrap">
+                <input class="file_upload_input_ref" type='file' name="refimg" onchange="refURL(refimg);" accept="image/*" />
                 <div class="defaut-upload-image">
-                    <a><img src="uploade_refimg.PNG" width=80% class="center"/></a>
+                    <a class="text_center"><img src="uploade_refimg.PNG" width=80% class="img_center" />Reference Image</a>
                 </div>
             </div>
-            <div class="file-upload-content">
-                <img class="file-upload-image" src="#" alt="your image" />
-                <div class="image-title-wrap">
-                    <button type="button" onclick="removeUpload()" class="remove-image">Remove
-                        <span class="image-title"></span></button>
-                </div>
+            <div class="file-upload-content_ref">
+                <img class="file-upload-image_ref" src="#" alt="your image" />
+                <button type="button" onclick="removeUpload_ref()" class="remove-refimg">Remove
+                    <span class="image-title"></span></button>
             </div>
 
-            <br>
-            <input type="submit" class="file-upload-btn-submit" value="Show Result"/>
+            <input type="submit" class="file-upload-btn-submit" value="Show Result" />
         </div>
     </form>
-</body>
 
-<div class="main-container">
-    <div class="nav-bottom">
-        <ul>
-            <li><a class="tab active"  href="../index.html"><i class="fas fa-home"></i></a></li>
-	  
-            <li><a class="tab"  href="../search/search.html"><i class="fas fa-search"></i></a></li>
-
-            <li> <a class="tab" href="../input_img_page/input_page.html" > <i class="fas fa-plus"></i></a></li>
-
-            <li><a class="tab" href="Users"><i class="fas fa-heart"></i></a></li>
-
-            <li><a class="tab" href="../mypage/mypage_1.html"><i class="fas fa-user"></i></a></li>
-</ul>
+    <div class="main-container">
+        <div class="nav-bottom">
+            <ul>
+                <li><a class="tab active" href="Home"><i class="fas fa-home"></i></a></li>
+                <li><a class="tab" href="Search"><i class="fas fa-search"></i></a></li>
+                <li> <a class="tab" href="Upload"> <i class="fas fa-plus"></i></a></li>
+                <li><a class="tab" href="Users"><i class="fas fa-heart"></i></a></li>
+                <li><a class="tab" href="Profile"><i class="fas fa-user"></i></a></li>
+            </ul>
+        </div>
     </div>
-</div>
-
+</body>
 </html>
