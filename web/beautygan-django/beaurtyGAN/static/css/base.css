@@ -1,0 +1,155 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.main-container{
+    width:100%;
+    max-width:768px;
+    margin:auto;
+    height:100%;
+}
+     
+.nav-top{
+    z-index: 1;
+    width:100%;
+    max-width:768px;
+    margin:auto;
+    top:0;
+    position:fixed;     
+}
+
+.nav-top ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    height:50px;
+    background-color:#f0f0f0;
+}
+
+li{
+    float:left;
+}
+
+.nav-start{
+    width:15%;
+}
+
+.nav-img{  
+    width:70%;
+}
+
+.nav-end{
+    width:15%;
+}
+
+li a{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    line-height:50px;
+    color:#ccc;
+    cursor:pointer;   
+}
+
+li a img{    
+    width:100px;
+    height:50px;
+}
+
+p{    
+    text-align:center;
+    margin-top:20px;
+    font-size:25px;
+}
+
+.nav-bottom{
+    width:100%;
+    max-width:768px;
+    position:fixed;
+    margin:auto;
+    bottom:0;
+}
+
+.nav-bottom ul{    
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    height:50px;
+    background-color:#f0f0f0;
+}
+
+.nav-bottom li{
+    float:left;
+    width:20%;
+}
+
+.nav-bottom li a{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    line-height:50px;
+    color:#ccc;
+    cursor:pointer;  
+}
+
+.tab.active{    
+    color:black;
+}
+
+.content-container{
+    margin-top: 70px;
+    margin-bottom: 70px;
+    z-index: 0;
+}
+
+.carousel-container{
+    width: 95%;
+    height: 200px;
+    margin: auto;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+}
+
+.imgslide .title{
+    height: 60px;
+    font-size: 20px;
+    font-weight: 250;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 3%;
+}
+  
+.carousel-slide img{
+    height: flex;
+    width: 200px;
+}
+  
+.carousel-slide{
+    display: flex;
+    height: 200px;
+    overflow: auto;
+}
+  
+.searchWindow{
+    margin-right: 15px;
+    margin-left: 15px;
+    width: 90%;
+    height: 15%;
+    align-items: center;
+    justify-content: center;
+    cursor: text;
+}
+
+.searchInput{
+    width: 90%;
+    position: relative;
+    border-bottom: 2px solid #d9d9d9;
+    margin-bottom: 2%;
+}

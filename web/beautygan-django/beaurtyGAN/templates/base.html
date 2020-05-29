@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+ <title>1! 2! transfer!</title>
+ 
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!----add icon link----> 
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+ 
+  <!----add jquery link----> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+ 
+</head>
+<body> 
+  <div class="main-container">
+  <div class="nav-top">
+    <ul> 
+      <li class="nav-start"><a><i class="fas fa-camera" style="color:black;"></i></a></li>
+      <li class="nav-img"><a><img src="{% static 'icon/title_img.png' %}"/></a></li>
+	    <li class="nav-end"><a href="{% url 'login' %}"><i class="fas fa-location-arrow" style="color:black;"></i></a></li>
+    </ul>
+  </div>
+  <div class="content-container">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <div class="nav-bottom">
+  
+    <ul>
+	    <li><a class="tab active"  href="{% url 'home' %}"><i class="fas fa-home"></i></a></li>
+	    <li><a class="tab"  href="{% url 'search' %}"><i class="fas fa-search"></i></a></li>
+      <li> <a class="tab" href="./input_img_page/input_page.html" > <i class="fas fa-plus"></i></a></li>
+      <li><a class="tab" href="Users"><i class="fas fa-heart"></i></a></li>
+	    <li><a class="tab" href="{% url 'myinfo' %}"><i class="fas fa-user"></i></a></li>
+  	</ul>
+  </div>
+</div>    
+</body>
+</html> 
