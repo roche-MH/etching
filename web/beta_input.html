@@ -1,0 +1,122 @@
+<html>
+<h1>BeautyGAN Model Test Page</h1>
+
+<style>
+    table {
+        width: 400px;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #c5c4c4;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Source Image</th>
+        <th>Reference Image</th>
+    </tr>
+    <form method="POST" action="output" enctype="multipart/form-data">
+        <!-- POST 방식으로 output.html로 이미지를 보낸다, enctype으로 이 form은 multipart를 포함한다고 알려준다-->
+        <tr>
+            <td>
+                <input type="file" name="srcimg" id="srcimg" onchange="previewImage(this,'View_srcimg')"
+                    accept="image/*;capture=camera">
+                <!-- file 업로드 형태, img를 받아서 미리보기 가능하도록 구현한 것,
+                accept는 전송 가능한 파일 타입 지정하는 명령어, 이미지 관련 모든 파일을 허용-->
+            </td>
+            <td>
+                <input type="file" name="refimg" id="refimg" onchange="previewImage(this,'View_refimg')"
+                    accept="image/*" capture="camera" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id='View_srcimg'
+                    style='position:relative; width: 200px; height: 200px; color: black; border: 0px solid black; dispaly: inline; '>
+                </div>
+            </td>
+            <td>
+                <div id='View_refimg'
+                    style='position:relative; width: 200px; height: 200px; color: black; border: 0px solid black; dispaly: inline; '>
+                </div>
+            </td>
+        </tr>
+</table>
+<br><input type="submit" value="Show Result">
+</form>
+
+<script>
+    function previewImage(targetObj, View_area) {
+        var preview = document.getElementById(View_area); //div id
+        var ua = window.navigator.userAgent;
+
+        //ie일때(IE8 이하에서만 작동)
+        if (ua.indexOf("MSIE") > -1) {
+            targetObj.select();
+            try {
+                var src = document.selection.createRange().text; // get file full path(IE9, IE10에서 사용 불가)
+                var ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
+
+
+                if (ie_preview_error) {
+                    preview.removeChild(ie_preview_error); //error가 있으면 delete
+                }
+
+                var img = document.getElementById(View_area); //이미지가 뿌려질 곳
+
+                //이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
+                img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + src + "', sizingMethod='scale')";
+            } catch (e) {
+                if (!document.getElementById("ie_preview_error_" + View_area)) {
+                    var info = document.createElement("<p>");
+                    info.id = "ie_preview_error_" + View_area;
+                    info.innerHTML = e.name;
+                    preview.insertBefore(info, null);
+                }
+            }
+            //ie가 아닐때(크롬, 사파리, FF)
+        } else {
+            var files = targetObj.files;
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
+                if (!file.type.match(imageType))
+                    continue;
+                var prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
+                if (prevImg) {
+                    preview.removeChild(prevImg);
+                }
+                var img = document.createElement("img");
+                img.id = "prev_" + View_area;
+                img.classList.add("obj");
+                img.file = file;
+                img.style.width = '200px';
+                img.style.height = '200px';
+                preview.appendChild(img);
+                if (window.FileReader) { // FireFox, Chrome, Opera 확인.
+                    var reader = new FileReader();
+                    reader.onloadend = (function (aImg) {
+                        return function (e) {
+                            aImg.src = e.target.result;
+                        };
+                    })(img);
+                    reader.readAsDataURL(file);
+                } else { // safari is not supported FileReader
+                    //alert('not supported FileReader');
+                    if (!document.getElementById("sfr_preview_error_"
+                        + View_area)) {
+                        var info = document.createElement("p");
+                        info.id = "sfr_preview_error_" + View_area;
+                        info.innerHTML = "not supported FileReader";
+                        preview.insertBefore(info, null);
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+</html>
