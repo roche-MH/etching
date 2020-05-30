@@ -178,3 +178,21 @@ p{
     width: 100%;
     border-radius: 50%;
 }
+
+.social_status{
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    display: flex;
+
+}
+
+.s_status{
+    font-size: small;
+    font-weight: 100;
+    width: 30%;
+    margin: auto;
+    text-align: center;
+    border-bottom:2px solid rgba(221, 126, 200, 0.726);
+}
