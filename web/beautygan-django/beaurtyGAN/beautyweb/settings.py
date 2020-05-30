@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'search.apps.SearchConfig',
     'login.apps.LoginConfig',
     'myinfo.apps.MyinfoConfig',
+    'imgprocess.apps.ImgprocessConfig',
+    'likefeed.apps.LikefeedConfig',
 ]
 
 MIDDLEWARE = [

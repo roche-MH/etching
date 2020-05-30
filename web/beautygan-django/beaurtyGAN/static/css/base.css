@@ -17,7 +17,7 @@
     max-width:768px;
     margin:auto;
     top:0;
-    position:fixed;     
+    position:fixed;
 }
 
 .nav-top ul{
@@ -26,7 +26,8 @@
     padding:0;
     overflow:hidden;
     height:50px;
-    background-color:#f0f0f0;
+    background-image: linear-gradient( 135deg, #81FFEF 10%, #F067B4 100%);
+    border-style: none;
 }
 
 li{
@@ -79,7 +80,7 @@ p{
     padding:0;
     overflow:hidden;
     height:50px;
-    background-color:#f0f0f0;
+    background-color: white;
 }
 
 .nav-bottom li{
@@ -152,4 +153,25 @@ p{
     position: relative;
     border-bottom: 2px solid #d9d9d9;
     margin-bottom: 2%;
+}
+
+.profile_container{
+    float: left;
+}
+
+.profile_text{
+    width: 200px;
+}
+
+.profile_img {
+    width: 150px;
+}
+
+.thumbnail{
+    width:150px;
+    height: 150px;
+    border: 0px!important;
+    padding: 0px;
+    border-radius: 50%;
+    border: 0px!important;
 }

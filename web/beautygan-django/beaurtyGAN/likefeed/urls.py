@@ -15,13 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from beautyweb.views import HomeView
+from likefeed.views import LikeFeedView
 
 urlpatterns = [
-    path('', HomeView.as_view(), name="home"),
-    path('search/', include('search.urls')),
-    path('login/', include('login.urls')),
-    path('myinfo/', include('myinfo.urls')),
-    path('imgprocess/', include('imgprocess.urls')),
-    path('likefeed/', include('likefeed.urls')),
+    path('likefeed/', LikeFeedView.as_view(), name="likefeed"),
 ]
