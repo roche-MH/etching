@@ -156,22 +156,25 @@ p{
 }
 
 .profile_container{
-    float: left;
+    margin-top: 20%;
+    padding-top: 10px;
+    display: flex;
 }
 
 .profile_text{
-    width: 200px;
+    padding-top: 5%;
+    margin-left: 10%;
+    width: 50%;
 }
 
 .profile_img {
-    width: 150px;
+    margin-left: 5%;
+    margin-right: 10%;
+    width: 35%;
+    border-radius: 50%;
 }
 
 .thumbnail{
-    width:150px;
-    height: 150px;
-    border: 0px!important;
-    padding: 0px;
+    width: 100%;
     border-radius: 50%;
-    border: 0px!important;
 }
