@@ -10,14 +10,32 @@ body {
     width: 50%;
   }
 
-  .file-upload {
-    background-color: #ffffff;
+  .output-upload {
     width: 100%;
-    margin: 0 auto;
-    padding: 20px;
+    height: calc(100% - 100px);
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 0px;
+    position: fixed;
   }
 
-  /* ////////////////////////////////////////// */
+  /* ////////// Split Areas ////////// */
+  .area_wrap {
+    width: 100%;
+    height: calc((100% - 100px) / 4);
+    margin-top: calc((100% - 100px)*0.01);
+    margin-bottom: calc((100% - 100px)*0.01);
+    padding: 0px;
+    position: relative;
+  }
+
+  /* ////////// Textareas Setting ////////// */
+  .describe_img {
+    display: block;
+    position: relative;
+  }
+
+  /* ////////// Image Area ////////// */
 
   @media (max-width: 576px) {
     .wrap-login100 {
@@ -27,16 +45,17 @@ body {
   }
   
   .user-image {
+    display: block;
     width:100px;
     height:100px;
-    margin-top: 15%;
-    margin-left: 20%;
+    margin-top: 5%;
+    margin-left: 5%;
     border-radius:50%;
     overflow:hidden;
   }
   
   .thumnail {
-    /* position: relative; */
+    position: relative;
     width:100%;
     min-height:100px;
     border: 0px!important;
@@ -45,27 +64,3 @@ body {
     border: 0px!important;
     z-index: 1;
   }
-
-   /* ////////////////////////////////////////// */
-
-   .textarea-image{
-     margin-left: 15%;
-     border: 0px!important;
-     position: relative;
-   }
-
-   .textarea-tag{
-    margin-left: 10%;
-    margin-top: 3%;
-    border: 0px!important;    
-    position: relative;
-  }
-
-    /* ////////////////////////////////////////// */
-    .upload-btn{
-      width: 40%;
-      height: 30px;
-      margin-left: 30%;
-      margin-top: 3%;
-      position: absolute;
-    }
