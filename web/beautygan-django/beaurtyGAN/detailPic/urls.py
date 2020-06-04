@@ -15,14 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from beautyweb.views import HomeView
+from detailPic.views import DetailPicView
 
 urlpatterns = [
-    path('', HomeView.as_view(), name="home"),
-    path('search/', include('search.urls')),
-    path('login/', include('login.urls')),
-    path('myinfo/', include('myinfo.urls')),
-    path('imgprocess/', include('imgprocess.urls')),
-    path('likefeed/', include('likefeed.urls')),
-    path('detailPic/', include('detailPic.urls')),
+    path('detailPic/', DetailPicView.as_view(), name="detailPic"),
 ]

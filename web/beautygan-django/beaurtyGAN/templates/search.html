@@ -3,8 +3,8 @@
 
 {% block content %}
 <form class="searchWindow">
-    <i class="fas fa-search" id="searchBtn"></i>            
-    <input type="text" class="searchInput" placeholder="find"/>
+    <label class="searchLabel"><i class="fas fa-search" id="searchBtn"></i></label>            
+    <input type="text" class="searchInput" placeholder="#태그, 화장품, 컨셉 검색"/>
 </form>
 <div class="slide-display">
     <div class="slidePage">
@@ -38,6 +38,18 @@
             </div>
             <div class="carousel-container 3">
                 <div class="carousel-slide 3">
+                    <img src="{% static 'img/1.png' %}" alt="">
+                    <img src="{% static 'img/2.png' %}" alt="">
+                    <img src="{% static 'img/3.png' %}" alt="">
+                    <img src="{% static 'img/4.png' %}" alt="">
+                    <img src="{% static 'img/5.png' %}" alt="" onclick="imageClick(this)">
+                </div>
+            </div>
+            <div class="title">
+                <p>#4</p>
+            </div>
+            <div class="carousel-container 4">
+                <div class="carousel-slide 4">
                     <img src="{% static 'img/1.png' %}" alt="">
                     <img src="{% static 'img/2.png' %}" alt="">
                     <img src="{% static 'img/3.png' %}" alt="">

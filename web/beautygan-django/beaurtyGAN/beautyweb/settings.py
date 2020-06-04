@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'myinfo.apps.MyinfoConfig',
     'imgprocess.apps.ImgprocessConfig',
     'likefeed.apps.LikefeedConfig',
+    'detailPic.apps.DetailpicConfig',
 ]
 
 MIDDLEWARE = [

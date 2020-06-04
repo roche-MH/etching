@@ -102,9 +102,10 @@ p{
 }
 
 .content-container{
-    margin-top: 70px;
-    margin-bottom: 70px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     z-index: 0;
+    overflow: auto;
 }
 
 .carousel-container{
@@ -139,37 +140,55 @@ p{
 }
   
 .searchWindow{
-    margin-right: 15px;
-    margin-left: 15px;
+    margin-right: 5%;
+    margin-left: 5%;
     width: 90%;
-    height: 15%;
-    align-items: center;
-    justify-content: center;
+    height: 20%;
     cursor: text;
+    text-align: center;
+}
+.searchLabel{
+    margin: 2% 2% 0 0;
+    font-size: large;
+    opacity: 0.5;
 }
 
 .searchInput{
     width: 90%;
+    height: 30px;
     position: relative;
+    border: none;
     border-bottom: 2px solid #d9d9d9;
     margin-bottom: 2%;
 }
 
 .profile_container{
-    margin-top: 20%;
+    margin-top: 5%;
     padding-top: 10px;
     display: flex;
 }
 
 .profile_text{
     padding-top: 5%;
-    margin-left: 10%;
-    width: 50%;
+    margin-left: 7%;
+    width: 60%;
 }
 
+.followBtn {
+    color: black;
+    margin-top: 10px;
+    width: 120px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(133, 128, 128, 0.3);
+
+}
+
+
 .profile_img {
-    margin-left: 5%;
-    margin-right: 10%;
+    margin-left: 1%;
+    margin-right: 7%;
     width: 35%;
     border-radius: 50%;
 }
@@ -177,6 +196,13 @@ p{
 .thumbnail{
     width: 100%;
     border-radius: 50%;
+}
+
+.extra_txt{
+    margin: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
 }
 
 .social_status{
@@ -195,4 +221,144 @@ p{
     margin: auto;
     text-align: center;
     border-bottom:2px solid rgba(221, 126, 200, 0.726);
+}
+
+.tagbox {
+    margin: 5%;
+    display: flex;
+    font-size: small;
+}
+.tag {
+    text-align: center;
+    width: 30%;
+    height: 20px;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: solid 1px rgba(133, 128, 128, 0.8);
+    border-bottom: none;
+}
+
+.like{
+    border: none;
+}
+
+.ref{
+    border: none;
+}
+
+.imgGrid{
+    margin-right: 2%;
+    margin-left: 2%;
+    text-align: justify;
+}
+
+.imgGrid img{
+    width: 32%;
+    margin: auto;
+}
+
+.todayKeyWord{
+    margin: 2%;
+    height: 50px;
+}
+
+.wordcloud{
+    width: 100%;
+    height: 200px;
+    background-color: turquoise;
+}
+
+.faceAnalysis{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 150px;
+    display: flex;
+}
+
+.tone{
+    width: 50%;
+    background-color: magenta;
+}
+
+.simillar{
+    width: 50%;
+    background-color: mediumslateblue;
+}
+
+.banner{
+    height: 60px;
+}
+
+.Event {
+    height: 80px;
+    background-color: olive;
+}
+
+.AD {
+    background-color: orchid;
+}
+
+.userinfo{
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 100;
+    height: 50px;
+    display: flex;
+}
+
+.userprofileimg{
+    margin-top: 2.5px;
+    max-width: 45px;
+    max-height: 45px;
+    border-radius: 50%;
+    border: solid rgba(223, 149, 219, 0.918);
+}
+
+.userprofileimg img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.userid{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.imgShow{
+    width: 100%;
+}
+
+.imgShow img{
+    width: 100%;
+}
+
+.imgPost{
+    display: flex;
+    height: 40px;
+}
+
+.userID{
+    margin: 2%;
+}
+
+.picLike{
+    color: red;
+    margin: 2%;
+}
+
+.picReference{
+    margin: 2%;
+    margin-left: 0;
+}
+
+.postNtag{
+    margin: 2%;
+    margin-top: 0;
+}
+
+.imgComment{
+    background-color: rgba(165, 165, 165, 0.1);
+    overflow: auto;
+    padding: 2%;
 }

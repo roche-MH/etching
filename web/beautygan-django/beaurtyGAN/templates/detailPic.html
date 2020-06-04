@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="userinfo">
+        <div class="userprofileimg">
+            <img src="{% static 'img/2.png' %}">
+        </div>
+        <div class="userid">
+            id
+        </div>
+    </div>
+    <div class="imgShow">
+        <img src="{% static 'img/2.png' %}">
+    </div>
+    <div class="imgPost">
+        <div class="userID">
+            user
+        </div>
+        <div class="picLike">
+            <a><i class="fas fa-heart"></i></a>
+        </div>
+        <div class="picReference">
+            <a href="{% url 'imgprocess' %}"><i class="far fa-clone"></i></a>
+        </div>
+    </div>
+    <div class="postNtag">
+        <div class="postTxt">
+            유저 입력 텍스트 이 화장에 대한 정보를 입력해 주세여
+        </div> 
+        <div class="posttag">
+            <div class="costag">
+                <i class="far fa-grin-squint-tears"></i>
+                화장품 태그 구성
+            </div>
+            <div class="themetag">
+                테마 태그 구성
+            </div>
+        </div>
+    </div>
+    <div class="imgComment">
+        <i class="far fa-comment-dots"></i>
+    </div>
+{% endblock %}
+
+
