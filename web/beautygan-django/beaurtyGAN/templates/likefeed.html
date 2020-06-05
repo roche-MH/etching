@@ -1,5 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>구독 좋아요<br>알람설정까지<br>부탁해요</h1>
+    <div class="newsfeed">
+        <div class="feedimg">
+            <img src="{% static 'img/profile.jpg' %}" alt="">
+        </div>
+        <div class="event">
+            '우주소녀 루다'님이 레퍼런스를 하였습니다.
+        </div>
+        <div class="targetimg">
+            <img src="{% static 'img/1.png' %}" alt="">
+        </div>
+    </div>
+    <div class="newsfeed">
+        <div class="feedimg">
+            <img src="{% static 'img/profile.jpg' %}" alt="">
+        </div>
+        <div class="event">
+            '우주소녀 루다'님이 게시물을 좋아합니다.
+        </div>
+        <div class="targetimg">
+            <img src="{% static 'img/1.png' %}" alt="">
+        </div>
+    </div>
 {% endblock %}
