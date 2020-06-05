@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="POST" action="output" enctype="multipart/form-data">{% csrf_token %}
+    <div class="file-upload">
+        <!-- Source Image Area -->
+        <div class="srcimg-upload-wrap">
+            <input class="file_upload_input_src" type='file' name="srcimg" id="srcimg" onchange="srcURL(srcimg);" accept="image/*" />
+            <div class="defaut-upload-image">
+                <a class="text_center"><img src="{% static 'img/upload_srcimg.PNG' %}" width=80% class="img_center" />Source Image</a>
+            </div>
+        </div>
+        <div class="file-upload-content_src">
+            <img class="file-upload-image_src" src="#" alt="your image" />
+            <button type="button" onclick="removeUpload_src()" class="remove-srcimg">Remove</button>
+        </div>
+
+        <!-- Reference Image Area -->
+        <div class="refimg-upload-wrap">
+            <input class="file_upload_input_ref" type='file' name="refimg" id="refimg" onchange="refURL(refimg);" accept="image/*" />
+            <div class="defaut-upload-image">
+                <a class="text_center"><img src="{% static 'img/upload_refimg.PNG' %}" width=80% class="img_center" />Reference Image</a>
+            </div>
+        </div>
+        <div class="file-upload-content_ref">
+            <img class="file-upload-image_ref" src="#" alt="your image" />
+            <button type="button" onclick="removeUpload_ref()" class="remove-refimg">Remove
+                <span class="image-title"></span></button>
+        </div>
+
+        <input type="submit" class="file-upload-btn-submit" value="Show Result" />
+    </div>
+</form>
+{% endblock %}

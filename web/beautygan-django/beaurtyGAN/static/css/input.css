@@ -1,0 +1,261 @@
+body {
+    font-family: sans-serif;
+    background-color: #eeeeee;
+  }
+  
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  .img_center {
+    display: block;
+    width: 60%;
+    margin-left: 20%;
+  }
+
+  .text_center {
+    display: block;    
+    margin: auto;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  /* ////////// File Upload Area ////////// */
+
+  .file-upload {
+    width: 100%;
+    height: calc(100%-100px);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 0px;
+    z-index: -2;
+    position: fixed;
+  }
+    
+  .file-upload-input {
+    position: absolute;
+    height: 100%;
+    width: 80%;
+    margin-left: 10%;
+    padding: 0;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+    z-index: -1;
+  }
+
+  .file_upload_input_src {
+    position: relative;
+    max-height: calc((100%-100px)*0.4);
+    width: 80%;
+    margin-left: 10%;
+    padding: 0;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .file_upload_input_ref {
+    position: absolute;
+    height: 100%;
+    width: 80%;
+    margin-left: 10%;
+    padding: 0;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+    z-index: -1;
+  }
+  
+  /* ////////// Img Upload Area ////////// */
+  
+  .defaut-upload-image {
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    margin-top: calc((100%-100px)*0.1);
+    padding: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .file-upload-content {
+    display: none;
+    text-align: center;
+    border: solid;
+  }
+
+  .file-upload-content_src {
+    display: none;
+    text-align: center;
+  }
+
+  .file-upload-content_ref {
+    display: none;
+    text-align: center;
+  }
+
+  .image-upload-wrap {
+    width: 90%;
+    height: calc((100%-100px)*0.4);
+    margin-left: 5%;
+    margin-top: calc((100%-100px)*0.05);
+    margin-bottom: calc((100%-100px)*0.05);
+    border: 2px dashed black;
+    position: relative;
+    opacity: 20%;
+    z-index: -2;
+  }
+
+  .srcimg-upload-wrap {
+    width: 90%;
+    height: calc((100%-100px)*0.4);
+    margin-left: 5%;
+    margin-top: calc((100%-100px)*0.05);
+    margin-bottom: calc((100%-100px)*0.05);
+    border: 2px dashed black;
+    position: relative;
+    opacity: 20%;
+    z-index: 1;
+  }
+
+  .refimg-upload-wrap {
+    width: 90%;
+    height: calc((100%-100px)*0.4);
+    margin-left: 5%;
+    margin-top: calc((100%-100px)*0.05);
+    margin-bottom: calc((100%-100px)*0.05);
+    border: 2px dashed black;
+    position: relative;
+    opacity: 20%;
+    z-index: 1;
+  }
+
+  .image-dropping,
+  .image-upload-wrap:hover {
+    border: 2px dashed #ffffff;
+  }
+
+  .srcimg-dropping,
+  .srcimg-upload-wrap:hover {
+    border: 2px dashed #ffffff;
+  }
+
+  .refimg-dropping,
+  .refimg-upload-wrap:hover {
+    border: 2px dashed #ffffff;
+  }
+      
+  .file-upload-image {
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .file-upload-image_src {
+    max-height: 200px;
+    max-width: 200px;
+    margin-top: calc((100%-100px)*0.05);
+    margin-bottom: calc((100%-100px)*0.05);
+    /* padding: 20px; */
+  }
+
+  .file-upload-image_ref {
+    max-height: 200px;
+    max-width: 200px;
+    margin-top: calc((100%-100px)*0.05);
+    margin-bottom: calc((100%-100px)*0.05);
+    /* padding: 20px; */
+  }
+  
+  /* ////////// Remove Img ////////// */
+
+  .remove-srcimg {
+    width: 20%;
+    font-size:20%;
+    margin: 0;
+    margin-left: 70%;
+    color: #fff;
+    background: #cd4535;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    border-bottom: 4px dashed #b02818;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .remove-srcimg:hover {
+    background: #c13b2a;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .remove-srcimg:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+  
+  .remove-refimg {
+    width: 20%;
+    font-size:20%;
+    margin: 0;
+    margin-left: 70%;
+    color: #fff;
+    background: #cd4535;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    border-bottom: 4px solid #b02818;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .remove-refimg:hover {
+    background: #c13b2a;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .remove-refimg:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+
+  /* ////////// Submit Btn ////////// */
+
+  .file-upload-btn-submit{
+    width: 60%;
+    margin-left: 20%;
+    margin-top: calc((100%-100px)*0.05);
+    margin-bottom: calc((100%-100px)*0.05);
+    position: relative;
+
+    color: #fff;
+    background: #a64bf4;
+    background: -webkit-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -o-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -moz-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    border: solid;
+    padding: 2%;
+    border-radius: 20px;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    left: 0;
+    cursor: pointer;
+  }

@@ -22,6 +22,8 @@ urlpatterns = [
     path('search/', include('search.urls')),
     path('login/', include('login.urls')),
     path('myinfo/', include('myinfo.urls')),
+    path('inputImg/', include('imgprocess.urls')),
+    path('output/', include('imgprocess.urls')),
     path('imgprocess/', include('imgprocess.urls')),
     path('likefeed/', include('likefeed.urls')),
     path('detailPic/', include('detailPic.urls')),
