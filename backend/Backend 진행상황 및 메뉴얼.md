@@ -440,23 +440,23 @@ def photo_path(instance, filename):
     from time import strftime
     from random import choice
     import string
-    arr = [choice(string.ascii_letters) for _ in range(8)]
+    arr = [choice(string.ascii_letters) for _ in range(8)] # 난수 8글자 랜덤으로 지정
     pid = ''.join(arr)
     extension = filename.split('.')[-1]
-    return '{}/{}/{}.{}'.format(strftime('post/%Y/%m/%d/'), instance.author.username, pid, extension)
+    return '{}/{}/{}.{}'.format(strftime('post/%Y/%m/%d/'), instance.author.username, pid, extension) # 업로드 파일 저장 위치
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     photo = ProcessedImageField(upload_to=photo_path,
-                                processors=[ResizeToFill(600,600)],
-                                format = 'JPEG',
+                                processors=[ResizeToFill(600,600)], ## 이미지 사이즈 600, 600
+                                format = 'JPEG',  # 파일 확장자 JPEG
                                 options={'qualty':90})
     
-    content = models.CharField(max_length=255, help_text="최대길이 255자 입력이 가능합니다.")
-    tema = models.CharField('테마',max_length=255, help_text="테마를 입력해주세요,  #테마")
-    cosmetic = models.CharField('화장품',max_length=255, help_text="사용한 화장품을 입력해주세요, #제품명")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    content = models.CharField(max_length=255, help_text="최대길이 255자 입력이 가능합니다.", blank=True) # 컨텐츠 입력
+    tema = models.CharField('테마',max_length=255, help_text="테마를 입력해주세요,  #테마",blank=True) #테마 입력
+    cosmetic = models.CharField('화장품',max_length=255, help_text="사용한 화장품을 입력해주세요, #제품명", blank=True) # 화장품 입력
+    created_at = models.DateTimeField(auto_now_add=True) # 최초 저장시에만 현재 날짜를 적용
+    updated_at = models.DateTimeField(auto_now=True) # 현재 일시 세팅
 
     class Meta:
         ordering = ['-created_at']
@@ -525,7 +525,30 @@ urlpatterns=[
 Post/views.py
 
 ```python
+from django.contrib.auth import get_user_model #유저모델 가져오기
+from django.shortcuts import get_object_or_404, render # 404 render 기능 불러오기
+from .models import Post #Post 모델 가져오기
 
+def post_list(request):
+
+    post_list = Post.objects.all() # model 객체 불러오기
+    distinct_tema = set(Post.objects.values_list('tema',flat=True)) # tema 에서 중복 값 제거하기
+    if request.user.is_authenticated:
+        username = request.user
+        user =get_object_or_404(get_user_model(), username=username) # 인증 확인
+        user_profile = user.profile
+
+        return render(request, 'post/post_list.html', { #인증 성공시 user_profile,post_lit,distinct_tema 보내기
+            'user_profile': user_profile,
+            'posts': post_list,
+            'dint_tema':distinct_tema,
+
+        })
+    else:
+        return render(request, 'post/post_list.html',{ #인증 성공시 post_lit,distinct_tema 보내기
+            'posts': post_list,
+            'dint_tema':distinct_tema,
+        })
 ```
 
 
