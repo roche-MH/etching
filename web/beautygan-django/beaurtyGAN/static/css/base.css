@@ -2,8 +2,10 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
+/*------------------------------------base---------------------------------------*/
 .main-container{
     width:100%;
     max-width:768px;
@@ -108,6 +110,8 @@ p{
     overflow: auto;
 }
 
+/*------------------------------------search page---------------------------------------*/
+
 .carousel-container{
     width: 95%;
     height: 200px;
@@ -140,6 +144,8 @@ p{
 }
   
 .searchWindow{
+    padding-top: 5%;
+    display: flex;
     margin-right: 5%;
     margin-left: 5%;
     width: 90%;
@@ -160,7 +166,11 @@ p{
     border: none;
     border-bottom: 2px solid #d9d9d9;
     margin-bottom: 2%;
+    margin-left: 3%;
 }
+
+/*------------------------------------myinfo page---------------------------------------*/
+
 
 .profile_container{
     margin-top: 5%;
@@ -261,43 +271,77 @@ p{
 .todayKeyWord{
     margin: 2%;
     height: 50px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
 }
+
+/*------------------------------------home page---------------------------------------*/
 
 .wordcloud{
     width: 100%;
-    height: 200px;
-    background-color: turquoise;
+}
+
+.wordcloud img{
+    width: 100%;
+    max-height: 300px;
 }
 
 .faceAnalysis{
     margin-top: 2%;
     margin-bottom: 2%;
-    height: 150px;
     display: flex;
+}
+
+.FA_title{
+    width: 50%;
+    position: absolute;
+    font-family: 'Black Han Sans', sans-serif;
+    opacity: 0.8;
+    font-size: 20px;
+    text-align: center;
+    justify-content: center;
 }
 
 .tone{
     width: 50%;
-    background-color: magenta;
+}
+
+.tone img{
+    width: 100%;
+    height: 100%;
 }
 
 .simillar{
     width: 50%;
-    background-color: mediumslateblue;
+
+}
+
+.simillar img{
+    width: 100%;
+    height: 100%;
 }
 
 .banner{
-    height: 60px;
+    height: 100%;
+}
+
+.banner img{
+    width: 100%;
+    margin-bottom: 2%;
 }
 
 .Event {
     height: 80px;
-    background-color: olive;
+    background-image: linear-gradient( 135deg, rgb(255, 241, 183) 30%, rgb(209, 219, 248) 100%);
 }
 
 .AD {
-    background-color: orchid;
+    background-image: linear-gradient( 135deg, rgb(255, 241, 183) 30%, rgb(255, 202, 247) 100%);
 }
+
+/*------------------------------------picture detail page---------------------------------------*/
 
 .userinfo{
     margin-left: 3%;
@@ -361,4 +405,109 @@ p{
     background-color: rgba(165, 165, 165, 0.1);
     overflow: auto;
     padding: 2%;
+}
+
+/*------------------------------------newsfeed page---------------------------------------*/
+
+
+.newsfeed{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    padding: 3%;
+}
+
+.feedimg{
+    width: 15%;
+}
+
+.feedimg img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.event{
+    padding-top: 1%;
+    padding-left: 4%;
+    padding-right: 4%;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.targetimg{
+    width: 15%;
+}
+
+.targetimg img{
+    width: 100%;
+}
+
+/*------------------------------------faceRatio page---------------------------------------*/
+
+.FR_title{
+    margin-top: 5px;
+    width: 100%;
+    height: 30px;
+    background-color: aliceblue;
+}
+
+.FR_process{
+    width: 100%;
+}
+
+.FR_imginput{
+    margin: 20px;
+    height: 260px;
+    border: dashed 3px black;
+}
+
+.FR_processBtn{
+    text-align: center;
+    height: 30px;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: blueviolet;
+    border-radius: 5px;
+}
+
+.FR_result{
+    width: 100%;
+    background-color: burlywood;
+}
+
+/*------------------------------------skinTone page---------------------------------------*/
+
+.FC_title{
+    margin-top: 5px;
+    width: 100%;
+    height: 30px;
+    background-color: aliceblue;
+}
+
+.FC_process{
+    width: 100%;
+}
+
+.FC_imginput{
+    margin: 20px;
+    height: 260px;
+    border: dashed 3px black;
+}
+
+.FC_processBtn{
+    text-align: center;
+    height: 30px;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: blueviolet;
+    border-radius: 5px;
+}
+
+.FC_result{
+    width: 100%;
+    background-color: burlywood;
 }

@@ -27,4 +27,6 @@ urlpatterns = [
     path('imgprocess/', include('imgprocess.urls')),
     path('likefeed/', include('likefeed.urls')),
     path('detailPic/', include('detailPic.urls')),
+    path('faceRatio/', include('faceRatio.urls')),
+    path('tonemeup/', include('tonemeup.urls')),
 ]

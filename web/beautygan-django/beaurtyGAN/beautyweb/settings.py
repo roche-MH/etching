@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'imgprocess.apps.ImgprocessConfig',
     'likefeed.apps.LikefeedConfig',
     'detailPic.apps.DetailpicConfig',
+    'faceRatio.apps.FaceratioConfig',
+    'tonemeup.apps.TonemeupConfig',
 ]
 
 MIDDLEWARE = [
