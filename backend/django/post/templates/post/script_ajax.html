@@ -1,0 +1,121 @@
+<script type="text/javascript">
+(function(){
+    const delegation = document.querySelector('.content-container');
+
+    function delegationFunc(e) { // 클릭한거 인자로 받음
+        let elem = e.target;
+        console.log(elem);
+        while(!elem.getAttribute('data-name')){
+            elem = elem.parentNode;
+
+            if (elem.nodeName == 'BODY'){
+                elem = null;
+                return;
+            }
+        }
+        if (elem.matches('[data-name="heartbeat"]')){
+            console.log('좋아요');
+            var pk = elem.getAttribute('name'); //post 고유 아이디값 {{post.id}}
+            console.log(pk);
+
+            $.ajax({ //ajax 는 몇가지 정보를 보내서 그 내용이 맞아서 서버와 통신을 하면 그 하단 javascrit를 실행할수 있게 해줌 
+                type: "POST",
+                url: "{% url 'post:post_like' %}",
+                data : {'pk': pk, 'csrfmiddlewaretoken':'{{ csrf_token }}'},
+                dataType: "json",
+                success: function (response){ //성공하면 이거
+                    //alert('성공!');
+                    var likeCount = document.querySelector('#like-count-'+pk);
+                    likeCount.innerHTML = '좋아요' + response.like_count + '개';
+                },
+                error: function (request, status, error){ // 실패하면 이거
+                    alert('에러!');
+                    alert('code:'+request.status + "\n" + "message:"+request.responseText+"\n"+"error:"+error); //에러 났을때 확인할수 있게 사용자한테는 보이면 안되고 개발단계에서 쓰는게 좋음
+
+                }
+
+            });
+        }else if (elem.matches('[data-name="Reference"]')){
+            console.log('레퍼런스!');
+            var pk = elem.getAttribute('name'); //post 고유 아이디값 {{post.id}}
+            console.log(pk);
+
+            $.ajax({ //ajax 는 몇가지 정보를 보내서 그 내용이 맞아서 서버와 통신을 하면 그 하단 javascrit를 실행할수 있게 해줌 
+                type: "POST",
+                url: "{% url 'post:post_reference' %}",
+                data : {'pk': pk, 'csrfmiddlewaretoken':'{{ csrf_token }}'},
+                dataType: "json",
+                success: function (response){ //성공하면 이거
+                    alert('성공!');
+                    var ReferenceCount = document.querySelector('#Reference-count-'+pk);
+                    ReferenceCount.innerHTML = '참조횟수' + response.reference_count + '개';
+                },
+                error: function (request, status, error){ // 실패하면 이거
+                    alert('에러!');
+                    alert('code:'+request.status + "\n" + "message:"+request.responseText+"\n"+"error:"+error); //에러 났을때 확인할수 있게 사용자한테는 보이면 안되고 개발단계에서 쓰는게 좋음
+
+                }
+
+            });
+
+
+        }else if (elem.matches('[data-name="comment"]')){
+            console.log('새댓글');
+            var pk = elem.getAttribute('name');
+            var content = document.querySelector('#add-comment-post'+pk+'>input[type=text]').value;
+            console.log(content);
+
+            if(content.length > 140){
+                alert('댓글은 최대 140자 입력 가능합니다. 현재 글자수 :'+content.length);
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{% url 'post:comment_new' %}",
+                data : {
+                    'pk': pk,
+                    'content': content,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                dataType: "html",
+                success: function(data, textStatus, jqXHR){
+                    document.querySelector("#comment-ajax-post"+pk).insertAdjacentHTML("afterend",data); //글 추가 했을때 바로 들어가도록
+                },
+                error: function(request, status, error){
+                    alert('code:'+request.status + "\n" + "message:"+request.responseText+"\n"+"error:"+error); //에러 났을때 확인할수 있게 사용자한테는 보이면 안되고 개발단계에서 쓰는게 좋음
+                }
+            });
+        }else if(elem.matches('[data-name="comment_delete"]')){
+            var pk = elem.getAttribute('name');
+
+            $.ajax({
+                type: "POST",
+                url: "{% url 'post:comment_delete' %}",
+                data: {
+                    'pk': pk,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                dataType: "json",
+                success: function(response){
+                    if(response.status){
+                        document.querySelector('#comment'+pk).remove();
+                    }
+                },
+                error: function(request, status, error){
+                    alert('code:'+request.status + "\n" + "message:"+request.responseText+"\n"+"error:"+error); //에러 났을때 확인할수 있게 사용자한테는 보이면 안되고 개발단계에서 쓰는게 좋음   
+                }
+            })
+        }
+
+        elem.classList.toggle('on');
+    }
+
+
+    delegation.addEventListener('click',delegationFunc);
+
+})();//익명함수 문서가 로드된후에 자바스크립트가 작동한다.
+
+
+
+
+</script>

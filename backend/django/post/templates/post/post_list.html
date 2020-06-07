@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form class="searchWindow">
+    <label class="searchLabel"><i class="fas fa-search" id="searchBtn"></i></label>            
+    <input type="text" class="searchInput" placeholder="#태그, 화장품, 컨셉 검색"/>
+</form>
+
+<div class="slide-display">
+    <div class="slidePage">
+        <div class="imgslide">
+            {% for tema in dint_tema %}
+            <div class="title">
+                <p onclick="imageClick(this)">{{tema}}</p>
+            </div>
+            <div class="carousel-container 1">
+                <div class="carousel-slide 1">
+                    {% for post in posts %}
+                    {% if tema == post.tema %}
+                    <a href="{% url 'post:post_detail' post.pk %}"><img src="{{ post.photo.url }}" alt="" onclick="imageClick(this)"></a>
+                    {% endif %}
+                    {% endfor %}
+                    <!--<img src="{{ post.photo.url }}" alt="" onclick="imageClick(this)"> 마지막 이미지 추가--> 
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>     
+</div>
+
+
+{% endblock %}

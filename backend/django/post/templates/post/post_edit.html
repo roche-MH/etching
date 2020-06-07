@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id ="main_container">
+
+    <div class="post_form_container">
+        <form action="" method="post" enctype="multipart/form-data">
+
+            <div class="preview">
+                <label for="id_photo">
+                    <div class="upload">
+                        <div class="post_btn">
+                            <div class="plus_icon">
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p>Edit 포스트</p>
+                            <canvas id="imageCanvas"></canvas>
+                        </div>
+                    </div>
+                </label>
+                {% if post %}
+                    <p><img id="img_id" src="{{ post.photo.url }}" style="width:300px; height:300px;"></p>
+                {% endif %}
+            </div>
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input type="submit" class="submit_btn" value="수정하기">
+        </form>
+    </div>
+</div>
+
+
+
+<!-- java 업로드 미리 보기-->
+
+<script>
+var fileinput = document.querySelector("#id_photo") //url 중 id_photo 의 값을 가져오고
+fileinput.addEventListener('change', handleImage);  // 이벤트에 대한 내용을 추적 실행   
+var canvas = document.getElementById('imageCanvas') // class 명을 값에 넣고
+var ctx = canvas.getContext('2d'); // 값을 불러와라
+
+function handleImage(e){
+    var reader = new FileReader();
+    reader.onload = function(event){
+        var img = new Image();
+        img.onload = function(){
+            canvas.width = 300;
+            canvas.height = 300;
+            ctx.drawImage(img,0,0,300,300);
+        };
+        img.src= event.target.result; // 이미지 경로 지정
+    };
+    reader.readAsDataURL(e.target.files[0]); //인풋박스에 들어간 이미지를 담아서 출력
+};
+
+</script>
+
+
+{% endblock %}
