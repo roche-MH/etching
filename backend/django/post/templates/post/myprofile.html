@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'base.css'%}">
+<div class="profile_container">
+    <div class="profile_text">
+        <div>
+            닉네임 : {{ user_profile.nickname }}
+        </div>
+        <div>
+            피부톤 : {{ user_profile.skinton }}
+        </div>
+        <div>
+            성별 : {{ user_profile.gender}}
+        </div>
+        <div>
+            <button class="followBtn">
+                follow
+            </button>
+        </div>
+    </div>
+    {% if user_profile %}
+        <div class="profile_img"><img src="{{ user_profile.picture.url }}" class="img-responsive thumbnail"></div>
+    {% else %}
+    <div class="profile_img"><img src="{% static 'img/noprofile.png' %}" class="img-responsive thumbnail"></div>
+    {% endif %}
+</div>
+<div class="extra_txt">
+    {{ user_profile.about }}
+</div>
+<div class="social_status">
+    <div class="s_status follower">
+        FLLOWERS<br>2000 
+    </div>
+    <div class="s_status following">
+        FOLLOWING<br>2000
+    </div>
+    <div class="s_status reference">
+        REFERENCE<br>2000
+    </div>
+</div>
+<div class="tagbox">
+    <div class="tag my" onclick="changeCategory(this)" onmouseout="changeCategory2(this)">
+       MY   
+    </div>
+    <div class="tag like" onclick="changeCategory(this)" onmouseout="changeCategory2(this)">
+        LIKE
+    </div>
+    <div class="tag ref" onclick="changeCategory(this)" onmouseout="changeCategory2(this)">
+        REFERENCE
+    </div>
+</div>
+
+<div class="imgGrid">
+    {% for post in posts %}
+    {% if user_profile.user == post.author %}
+        <img src="{{ post.photo.url }}">
+    {% endif %}
+    {% endfor %}
+</div>
+<script>
+    function changeCategory(obj){
+        obj.style.border = 'solid 1px rgba(133, 128, 128, 0.8)';
+        obj.style.borderBottom = 'none';
+    }
+    function changeCategory2(obj){
+        obj.style.border = 'none'; 
+    }
+</script>
+{% endblock %}
