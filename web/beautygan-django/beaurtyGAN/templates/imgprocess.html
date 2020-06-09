@@ -1,5 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="animated animate__heartBeat delay-2s" >imgprocess will be added</div>
+    <script>
+        count = 1
+        function changeImg(){
+            var img = document.getElementById("showImg");
+            if count :
+                document.getElementById("showImg").src="{% static 'img/result_src.jpg' %}";
+                count = 0
+            else :
+                document.getElementById("showImg").src="{% static 'img/result_makeup.jpg' %}";
+                count = 1
+        }
+        {% comment %} if (document.getElementById("imgClickAndChange").src == "http://www.userinterfaceicons.com/80x80/minimize.png") 
+        {
+            document.getElementById("imgClickAndChange").src = "http://www.userinterfaceicons.com/80x80/maximize.png";
+        }
+        else 
+        {
+            document.getElementById("imgClickAndChange").src = "http://www.userinterfaceicons.com/80x80/minimize.png";
+        } {% endcomment %}
+    </script>
+
+    <form class="login100-form validate-form" action="imgoutput">		
+        <div class="user-image-container">
+            <div class="user-image">
+                <img id="showImg" src="{% static 'img/result_makeup.jpg' %}" class="thumnail">
+            </div>
+            <a onclick="changeImg(this);"><i class="fas fa-adjust" id="srcBtn"/></a>
+        </div>
+        <div class="functionBtn">
+            <a><i class="far fa-save" style="font-size:200%; font-weight:bold; opacity: 80%;width: -100%;"></i></a>
+            <a><i class="fas fa-share-square" style="font-size:200%; font-weight:bold; opacity: 80%;width: -100%;"></i></a>
+            <a class="output" href="{% url 'post:post_new' %}"><i class="fas fa-file-upload" style="font-size:200%; font-weight:bold; opacity: 80%;width: -100%;"></i></a>
+            <a><i class="fab fa-youtube" style="font-size:200%; font-weight:bold; opacity: 80%;width: -100%;"></i></a>
+        </div>	
+    </form>
 {% endblock %}
