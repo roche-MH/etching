@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/imgprocess.css' %}"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
+    <script>
+        var cnt = 1;
+        function changeImg(){
+            var img = document.getElementById("showImg");            
+            if (cnt) {
+                document.getElementById("showImg").src = "http://127.0.0.1:8000/static/img/result_src.jpg";
+                cnt = 0;
+            } else { 
+                document.getElementById("showImg").src = "http://127.0.0.1:8000/static/img/result_makeup.jpg";
+                cnt = 1;
+            }
+        }
+
+        var check = $("input[type='checkbox']");
+        check.click(function(){
+            $("p").toggle();
+        });
+    </script>
+
+    
+
+    <div class="user-image-container">
+        <div class="user-image">
+            <img id="showImg" src="{% static 'img/result_makeup.jpg' %}" class="thumnail">
+        </div>
+        
+        {% comment %} <button id="chgBtn" onclick="changeImg()" class="fas fa-adjust" /> {% endcomment %}
+        
+        <label class="switch">
+            <input type="checkbox" id="chgBtn" onclick="changeImg()">
+            <span class="slider round"></span>
+        </label>
+
+    </div>
+
+    <div class="functionBtn">
+        <!-- save -->
+        <a href="{% static 'img/result_makeup.jpg' %}" download><i class="far fa-save" style="font-size:200%; font-weight:bold; opacity: 80%;width: -100%;"></i></a>
+        
+        <!-- share -->
+        <a><i class="fas fa-share-square" style="font-size:200%; font-weight:bold; opacity: 80%;width: -100%;"></i></a>
+        
+        <!-- upload -->
+        <a class="output" href="{% url 'post:post_new' %}"><i class="fas fa-file-upload" style="font-size:200%; font-weight:bold; opacity: 80%;width: -100%;"></i></a>
+        
+        <!-- youtube -->
+        <a><i class="fab fa-youtube" style="font-size:200%; font-weight:bold; opacity: 80%;width: -100%;"></i></a>
+    </div>
+{% endblock %}
