@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- java 업로드 미리 보기-->
+<script>
+var fileinput = document.querySelector("#id_photo") //url 중 id_photo 의 값을 가져오고
+fileinput.addEventListener('change', handleImage);  // 이벤트에 대한 내용을 추적 실행   
+var canvas = document.getElementById('imageCanvas') // class 명을 값에 넣고
+var ctx = canvas.getContext('2d'); // 값을 불러와라
+
+function handleImage(e){
+    var reader = new FileReader();
+    reader.onload = function(event){
+        var img = new Image();
+        img.onload = function(){
+            canvas.width = 300;
+            canvas.height = 300;
+            ctx.drawImage(img,0,0,300,300);
+        };
+        img.src= event.target.result; // 이미지 경로 지정
+    };
+    reader.readAsDataURL(e.target.files[0]); //인풋박스에 들어간 이미지를 담아서 출력
+};
+</script>
+
+{% block content %}
+    <!-- beautyapp_merged > post > templates > post > post_new.html -->
+    <link rel="stylesheet" href="{% static 'css/imgprocess.css' %}"/>
+
+    <form action="" method="post" enctype="multipart/form-data">
+
+        <div class="user-image-container">
+            <div class="user-image">
+                <img id="showImg" src="{% static 'img/result_makeup.jpg' %}" class="thumnail">
+            </div>
+        </div>
+
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" class="file-upload-btn-submit" value="  저  장  " />
+        
+    </form>
+{% endblock %}
