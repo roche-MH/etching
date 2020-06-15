@@ -13,14 +13,9 @@
     </div>
 
     {% comment %} 결과물 출력하기 + CSS 입히기 {% endcomment %}
-    <ol>
-        <li>왜 </li><br>
-        <li>ul & li </li><br>
-        <li>태그가 </li><br>
-        <li>안되느냐 </li><br>
-        <li>이상하다 </li><br>
-        <li>ㅇ으으으으 </li><br>
-        <li>아악 </li><br>
-    </ol>
+    
+    {% for k in fr_result %}
+        {{ k }} <br>
+    {% endfor %}
 
 {% endblock %}

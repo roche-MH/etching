@@ -18,6 +18,9 @@ from BG_model import GAN_model as gm
 from cv2 import cv2 
 from werkzeug import secure_filename
 
+from Face_model import faceRatio as fr
+from Face_model import faceColor as fc
+
 
 ################################ Image 처리 영역 ################################
 
@@ -70,13 +73,37 @@ def face_ratio_in(request): # face ratio function input
     return render(request, 'post/faceRatioInput.html')
 
 @login_required
-def face_ratio_out(request): # face ratio function output
-    
-    '''
-        여기 모델이랑 합치는 부분
-    '''
+def face_ratio_out(request): # face ratio function output    
+    path = settings.BASE_DIR
 
-    return render(request, 'post/faceRatioOutput.html')
+    src_img = request.FILES['srcimg']
+    src_name = 'fr_'+str(src_img)
+    src_path = open(path + '/post/static/img/'+src_name, "wb")
+    for ch in src_img.chunks() :
+        src_path.write(ch)
+    src_path.close()
+    
+    s_path = path + '/post/static/img/'+src_name
+    fr_img = fr.faceLandmark81(s_path)
+    fr_result = fr.faceRatio(s_path)
+    
+    # fr_rs = "".join(fr_result)
+    # fr_rs = fr_rs.replace("\n","<br/>\n")
+    # fr_rs = fr_rs.split("\n")
+    # print(fr_rs)
+
+    cv2.imwrite(path + '/post/static/img/fr_result.jpg', fr_img)
+    fr_key = fr_result.keys()
+    fr_value = fr_result.values()
+    fr_rs = (fr_key, fr_value)
+    
+    return render(request, 'post/faceRatioOutput.html',{
+        'fr_img' : fr_img,
+        'fr_key' : fr_key,
+        'fr_value' : fr_value,
+        'fr_result' : fr_result,
+    })
+
 
 @login_required
 def personal_color_in(request): # personal color detection function input
@@ -85,11 +112,35 @@ def personal_color_in(request): # personal color detection function input
 @login_required
 def personal_color_out(request): # personal color detection function output
     
-    '''
-        여기 모델이랑 합치는 부분
-    '''
+    path = settings.BASE_DIR
 
-    return render(request, 'post/personalColorOutput.html')
+    src_img = request.FILES['srcimg']
+    src_name = 'pc_'+str(src_img)
+    src_path = open(path + '/post/static/img/'+src_name, "wb")
+    for ch in src_img.chunks() :
+        src_path.write(ch)
+    src_path.close()
+    
+    s_path = path + '/post/static/img/'+src_name
+    pc_img = fc.face_color(s_path)
+    pc_result = fc.color_predict(s_path)
+    
+    # fr_rs = "".join(fr_result)
+    # fr_rs = fr_rs.replace("\n","<br/>\n")
+    # fr_rs = fr_rs.split("\n")
+    # print(fr_rs)
+
+    cv2.imwrite(path + '/post/static/img/pc_result.jpg', pc_img)
+    # fr_key = fr_result.keys()
+    # fr_value = fr_result.values()
+    # fr_rs = (fr_key, fr_value)
+    
+    return render(request, 'post/personalColorOutput.html',{
+        'pc_img' : pc_img,
+        # 'fr_key' : fr_key,
+        # 'fr_value' : fr_value,
+        'pc_result' : pc_result,
+    })
 
 ################################ End Additional Functions ###########################
 #####################################################################################

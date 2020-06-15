@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
+<script>
+    function rs(){
+        for (i=0; i<7; i++){
+            document.write(fr_key[i], fr_value[i]);
+            //fr_key[i], fr_value[i]
+        }
+    }
+</script>
+
 {% block content %}
     <!-- beautyapp_merged > post > templates > post > faceRatio_output.html -->
     faceRatio_output
@@ -8,19 +17,17 @@
 
     <div class="user-image-container">
         <div class="user-image">
-            <img id="showImg" src="{% static 'img/result_makeup.jpg' %}" class="thumnail">
+            <img id="showImg" src="{% static 'img/fr_result.jpg' %}" class="thumnail">/
+            {% comment %} <img id="showImg" src="{% static 'img/fr_result.jpg' %}" class="thumnail"> {% endcomment %}
         </div>
     </div>
 
     {% comment %} 결과물 출력하기 + CSS 입히기 {% endcomment %}
-    <ul>
-        <li>1 </li><br>
-        <li>2 </li><br>
-        <li>3 </li><br>
-        <li>4 </li><br>
-        <li>5 </li><br>
-        <li>6 </li><br>
-        <li>7 </li><br>
-    </ul>
+
+
+    {% for k in fr_result %}
+        {{ k }} <br>
+    {% endfor %}
+
 
 {% endblock %}
