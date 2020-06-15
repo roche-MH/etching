@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- beautyapp_merged > post > templates > post > personalColor_output.html -->
+    personalColor_input
+
+    <form method="POST" action="personalColorOut" enctype="multipart/form-data">{% csrf_token %}
+        <div class="file-upload">
+
+            <!-- Source Image Area -->
+            <div class="srcimg-upload-wrap">
+                <input class="file_upload_input_src" type='file' name="srcimg" id="srcimg" onchange="srcURL(srcimg);" accept="image/*">
+                <div class="defaut-upload-image">
+                    <a class="text_center"><img src="{% static 'img/upload_srcimg.PNG' %}" width=80% class="img_center" />Your Color</a>
+                </div>
+            </div>
+            <div class="file-upload-content_src">
+                <img class="file-upload-image_src" src="#" alt="your image" />
+                <button type="button" onclick="removeUpload_src()" class="remove-srcimg">Remove</button>
+            </div>
+
+            <input type="submit" class="file-upload-btn-submit" value="Show Result" />
+        </div>
+    </form>
+
+{% endblock %}
