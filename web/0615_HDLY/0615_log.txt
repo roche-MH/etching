@@ -1,41 +1,106 @@
-- 이미지 저장할 때, 이미지 파일에 user ID 붙여서 저장해야 구분할 수 있지 않을까?
-  다중 사용자가 동시에 접근하더라도 같은 사용자가 동시에 들어오는 경우는 없을테니까
-- 이미지 처리해서 결과 저장하는 폴더 삭제하는 주기 정해서 폴더 empty reset
+[post > urls.py 코드 수정]
+
+# addtional functions urls
+    path('faceRatioIn/', face_ratio_in, name='face_ratio_in'),
+    path('faceRatioIn/faceRatioOut', face_ratio_out, name='face_ratio_out'),
+    path('personalColorIn/', personal_color_in, name='personal_color_in'),
+    path('personalColorIn/personalColorOut', personal_color_out, name='personal_color_out'),
+
+====================================
+
+[views.py 코드 추가]
+
+1)
+@login_required
+def face_ratio_in(request): # face ratio function input
+    return render(request, 'post/faceRatioInput.html')
+
+2)
+@login_required
+def face_ratio_out(request): # face ratio function output    
+    path = settings.BASE_DIR
+
+    src_img = request.FILES['srcimg']
+    src_name = 'fr_'+str(src_img)
+    src_path = open(path + '/post/static/img/'+src_name, "wb")
+    for ch in src_img.chunks() :
+        src_path.write(ch)
+    src_path.close()
+    
+    s_path = path + '/post/static/img/'+src_name
+    fr_img = fr.faceLandmark81(s_path)
+    fr_result = fr.faceRatio(s_path)
+    
+    # fr_rs = "".join(fr_result)
+    # fr_rs = fr_rs.replace("\n","<br/>\n")
+    # fr_rs = fr_rs.split("\n")
+    # print(fr_rs)
+
+    cv2.imwrite(path + '/post/static/img/fr_result.jpg', fr_img)
+    fr_key = fr_result.keys()
+    fr_value = fr_result.values()
+    fr_rs = (fr_key, fr_value)
+    
+    return render(request, 'post/faceRatioOutput.html',{
+        'fr_img' : fr_img,
+        'fr_key' : fr_key,
+        'fr_value' : fr_value,
+        'fr_result' : fr_result,
+    })
+
+3)
+@login_required
+def personal_color_in(request): # personal color detection function input
+    return render(request, 'post/personalColorInput.html')
+
+4)
+@login_required
+def personal_color_out(request): # personal color detection function output
+    
+    path = settings.BASE_DIR
+
+    src_img = request.FILES['srcimg']
+    src_name = 'pc_'+str(src_img)
+    src_path = open(path + '/post/static/img/'+src_name, "wb")
+    for ch in src_img.chunks() :
+        src_path.write(ch)
+    src_path.close()
+    
+    s_path = path + '/post/static/img/'+src_name
+    pc_img = fc.face_color(s_path)
+    pc_result = fc.color_predict(s_path)
+    
+    # fr_rs = "".join(fr_result)
+    # fr_rs = fr_rs.replace("\n","<br/>\n")
+    # fr_rs = fr_rs.split("\n")
+    # print(fr_rs)
+
+    cv2.imwrite(path + '/post/static/img/pc_result.jpg', pc_img)
+    # fr_key = fr_result.keys()
+    # fr_value = fr_result.values()
+    # fr_rs = (fr_key, fr_value)
+    
+    return render(request, 'post/personalColorOutput.html',{
+        'pc_img' : pc_img,
+        # 'fr_key' : fr_key,
+        # 'fr_value' : fr_value,
+        'pc_result' : pc_result,
+    })
+
+====================================
 
 
-(0612 worked log)
+[html]
 
-1) post_new.html
-	- submit Btn : imginput.html 페이지에 있는 submit 버튼 css 입힘
-	- form 태그 action 어디로 보내야 함???
+1) faceRatioInput.html
+2) faceRatioOutput.html
+3) personalColorInput.html
+4) personalColorOutput.html
 
-2) forms.py
-	- 글쓰기 ~ 테마 ~ 화장품 ... 형식을 바꾸고 싶음
 
-----
+====================================
 
-<< 추가 기능 관련 작업 >>
-1) personalColor
-	- 파일 생성 : beautyapp_merged > post > templates > post > faceRatio_output.html
+[model]
 
-2) personalColor
-	- 파일 생성 : beautyapp_merged > post > templates > post > personalColor_output.html
-
-3) views.py 코드 추가
-	# addtional functions urls
-	    path('faceratio/', face_ratio, name='face_ratio'),
-	    path('personalcolor/', personal_color, name='personal_color'),
-
-4) urls.py 코드 추가
-	@login_required
-	def face_ratio(request): # face ratio function
-	    return render(request, 'post/faceRatio_output.html')
-
-	@login_required
-	def personal_color(request): # personal color detection function
-	    return render(request, 'post/personalColor_output.html')
-
-+ 앞으로 해야 할 일
-얼굴 비율 & 컬러 페이지 모두 input ~ output 포맷 맞추기 - html 껍데기 만들기
-그런 다음, 민지님 만든 코드들이랑 합치고, css 입히고 ... db에 저장 등등
-
+Face_model 폴더 생성
+그 아래에 faceColor.py, faceRatio.py 생성
