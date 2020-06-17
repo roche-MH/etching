@@ -14,6 +14,7 @@ import pickle
 path = settings.BASE_DIR + '\Face_model'
 predictor = dlib.shape_predictor(path+"\shape_predictor_68_face_landmarks.dat")
 detector = dlib.get_frontal_face_detector()
+sp = dlib.shape_predictor(path+'\shape_predictor_5_face_landmarks.dat')
 
 ################### XGBoost Model ########################
 data = pd.read_excel(path+'\data2.xlsx')
@@ -51,6 +52,19 @@ xgb_model = pickle.load((open(file_name, "rb")))
 
 # 얼굴에서 가져온 RGB값으로 그래프 그리기
 
+def align_faces(img):
+    dets = detector(img, 1)
+    
+    objs = dlib.full_object_detections()
+
+    for detection in dets:
+        s = sp(img, detection)
+        objs.append(s)
+        
+    faces = dlib.get_face_chips(img, objs, size=256, padding=0.35)
+    
+    return faces
+
 def cv_imread(file_path):
     cv_img = cv2.imdecode(np.fromfile(file_path, dtype=np.uint8), -1)
     return cv_img
@@ -59,7 +73,9 @@ def face_color(frame):
     img = Image.open(frame) 
     
     fr0 = cv_imread(frame)
-    fr = cv2.cvtColor(fr0, cv2.COLOR_BGR2RGB)
+    fr1 = cv2.cvtColor(fr0, cv2.COLOR_BGR2RGB)
+    fr = align_faces(fr1)
+    fr = fr[0]
     gray = cv2.cvtColor(fr, cv2.COLOR_BGR2GRAY)
     
     rects = detector(gray, 0)
@@ -115,7 +131,9 @@ def color_predict(frame):
     img = Image.open(frame) 
     
     fr0 = cv_imread(frame)
-    fr = cv2.cvtColor(fr0, cv2.COLOR_BGR2RGB)
+    fr1 = cv2.cvtColor(fr0, cv2.COLOR_BGR2RGB)
+    fr = align_faces(fr1)
+    fr = fr[0]    
     gray = cv2.cvtColor(fr, cv2.COLOR_BGR2GRAY)
     
     rects = detector(gray, 0)

@@ -8,7 +8,7 @@ from django.conf import settings
 path = settings.BASE_DIR + '\Face_model'
 predictor = dlib.shape_predictor(path+"\shape_predictor_81_face_landmarks.dat")
 detector = dlib.get_frontal_face_detector()
-
+sp = dlib.shape_predictor(path+'\shape_predictor_5_face_landmarks.dat')
 
 # 거리구하기
 def distance(p1,p2):
@@ -25,15 +25,30 @@ def ratio3(a,b,c):
     ratio = [a/a, b/a, c/a]
     return ratio
 
+def align_faces(img):
+    dets = detector(img, 1)
+    
+    objs = dlib.full_object_detections()
 
+    for detection in dets:
+        s = sp(img, detection)
+        objs.append(s)
+        
+    faces = dlib.get_face_chips(img, objs, size=256, padding=0.35)
+    
+    return faces
+    
 def cv_imread(file_path):
     cv_img = cv2.imdecode(np.fromfile(file_path, dtype=np.uint8), -1)
     return cv_img
 
 def faceLandmark81(frame):
     fr0 = cv_imread(frame)
-    fr = cv2.cvtColor(fr0, cv2.COLOR_BGR2RGB)
+    fr1 = cv2.cvtColor(fr0, cv2.COLOR_BGR2RGB)
+    fr = align_faces(fr1)
+    fr = fr[0]
     gray = cv2.cvtColor(fr, cv2.COLOR_BGR2GRAY)
+
     # gray = cv2.cvtColor(cv2.UMat(frame), cv2.COLOR_BGR2GRAY)
     rects = detector(gray, 0)
 
@@ -47,8 +62,13 @@ def faceLandmark81(frame):
 
 
 def faceRatio(frame):
-    result={} 
-    fr = cv_imread(frame)
+    result={}
+
+    fr0 = cv_imread(frame)
+    fr1 = cv2.cvtColor(fr0, cv2.COLOR_BGR2RGB)
+    fr = align_faces(fr1)
+    fr = fr[0]
+    
     gray = cv2.cvtColor(fr, cv2.COLOR_BGR2GRAY)
     rects = detector(gray, 0)
 
