@@ -1,110 +1,138 @@
-{% extends 'base.html' %}
+{% extends 'post/base.html' %}
 {% load static %}
 
 {% block content %}
-<div class="userinfo">
-    <div class="userprofileimg">
-        {% if post.author.profile.picture %}
-        <img src="{{ post.author.profile.picture.url }}">
-        {% else %}
-        <img src="{% static 'img/noprofile.png' %">
-        {% endif %}
-    </div>
-    <div class="userid">
-        {{ post.author.profile.nickname }}
-    </div>
-    <div class="sprite_more_icon" data-name="more">
-        <!--<ul class="more_detail">
-            <li>
-            {% if user.profile in post.author.profile.get_follwer %}
-            <input type="submit" class="follow" value="팔로잉" data-name="follow" name="{{ post.author.profile.id }}">    
-            {% else %}
-            <input type="submit" class="follow" value="팔로우" data-name="follow" name="{{ post.author.profile.id }}">
-            {% endif %}
-            </li>
+<div class="detailContainer">
+
+    <div class="postContainer">
+        <div class="userinfo">
+            <div class="userprofileimg">
+                {% if post.author.profile.picture %}
+                <a href="{% url 'post:post_profile_pk' post.author.pk %}"><img
+                        src="{{ post.author.profile.picture.url }}"></a>
+                {% else %}
+                <a href="{% url 'post:post_profile_pk' %}"><img
+                        src="{% static 'img/noprofile.png' %}"></a>
+                {% endif %}
+            </div>
+            <div class="userid">
+            {{ post.author.profile.nickname }}
+            </div>
             {% if post.author == user %}
-            <li>
-            <a class="post-edit" href="{% url 'post:post_edit' post.pk %}">수정</a>
-            </li>
-            <li>
-                <form class="post-delete-form" action="{% url 'post:post_delete' post.pk %}" method="post">
-                    {% csrf_token %}
-                    <input type="submit" class="post-delete" value="삭제">
-                </form>
-            </li>
+            <div class="dropdown">
+                <div id="popupmenu-wrapper">
+                    <ul id="popupmenu">
+                        <li class="popupmenu-item">
+                            <ul class="popupmenu-menu">
+                                <div>
+                                    <a class="post-edit" href="{% url 'post:post_edit' post.pk %}">수정</a>
+                                </div>
+                                <div>
+                                    <form class="post-delete-form" action="{% url 'post:post_delete' post.pk %}"
+                                        method="post">
+                                        {% csrf_token %}
+                                        <input type="submit" class="post-delete" value="삭제">
+                                    </form>
+                                </div>
+                            </ul>
+                            <span><i class="fas fa-chevron-down"></i></span>
+                        </li>
+                    </ul>
+                </div>
             {% endif %}
-        </ul>-->
+            </div>
+        </div>
+        <div class="imgShow">
+            <img src="{{ post.photo.url }}">
+        </div>
+        <div class="imgPost">
+            <div class="id_container">
+                <div class="userID">
+                    {{ post.author.profile.nickname }}
+                </div>
+            </div>
+            <div class="picLike">
+                {% if user in post.like_user_set.all %}
+                <!-- class 명 on 으로 해서 값 변경될수 있도록 이미지 분류 필요함 밑에 script_ajax 통신으로 바뀜-->
+                <div class="sprite_heart_icon_outline on" name="{{ post.id }}" data-name="heartbeat"><a><i
+                            class="fas fa-heart"></i></a><span id="like-count-{{ post.id }}"> {{ post.like_count }} </span></div>
+                {% else %}
+                <div class="sprite_heart_icon_outline" name="{{ post.id }}" data-name="heartbeat"><a><i
+                            class="fas fa-heart"></i></a><span id="like-count-{{ post.id }}"> {{ post.like_count }} </span></div>
+                <!--<a><i class="fas fa-heart"></i></a> {{ post.like_count }} 개-->
+                {% endif %}
+
+            </div>
+            <div class="picReference">
+                <div class="sprite_heart_icon_outline on" name="{{ post.id }}" data-name="Reference"><a><i
+                            class="far fa-clone"></i></a></div>
+                <span id="reference-count-{{ post.id }}"> {{ post.Reference_count }} </span>
+            </div>
+        </div>
+        <div class="postNtag">
+            <div class="postTxt">
+                {{ post.content }}
+            </div>
+            <div class="posttag">
+                <div class="costag">
+                    {{ post.cosmetic }}
+                </div>
+                <div class="themetag">
+                    {{post.tema}}
+                </div>
+            </div>
+        </div>
+        <div class="imgComment">
+            <div class="comment" id="comment-ajax-post{{post.id}}">
+                {% for comment in post.comment_set.all %}
+                <div class="comment-detail" id="comment{{ comment.id }}">
+                    {% if comment.author.profile.picture.url %}
+                    <div class="nick_name"><a href="{% url 'post:post_profile_pk' comment.author.pk %}">
+                        <img src="{{ comment.author.profile.picture.url }}"></a>
+                        <div class="cmt_all">
+                            <span class="cmt_id">{{comment.author.profile.nickname}}</span>
+                            {{comment.content}}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="nick_name"><a href="{% url 'post:post_profile_pk' comment.author.pk %}">
+                        <img src="{% static 'img/noprofile.png' %}"></a>
+                        <div class="cmt_id">
+                            {{comment.author.profile.nickname}}
+                            {{comment.content}}
+                        </div>
+
+                    </div>
+                    {% endif %}
+                    {% if user == comment.author %}
+                    <input type="button" class="del-comment" data-name="comment_delete" value="삭제"
+                        name="{{comment.id}}">
+                    {% endif %}
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-</div>
-<div class="imgShow">
-    <img src="{{ post.photo.url }}">
-</div>
-<div class="imgPost">
-    <div class="userID">
-        {{ post.author.profile.nickname }}
-    </div>
-    <div class="picLike">
-        {% if user in post.like_user_set.all %} <!-- class 명 on 으로 해서 값 변경될수 있도록 이미지 분류 필요함 밑에 script_ajax 통신으로 바뀜-->
-        <div class="sprite_heart_icon_outline on" name="{{ post.id }}" data-name="heartbeat"><a><i class="fas fa-heart"></i></a></div>
-        <span id="like-count-{{ post.id }}"> {{ post.like_count }} 개</span>
+
+    <div class="comment_field" id="add-comment-post{{post.id}}">
+        {% if user.is_authenticated %}
+        {{ comment_form }}
+        <a class="cmticon"><i class="far fa-comment-dots"></i></a>
+        <input type="text" placeholder="댓글달기...">
+        <div class="upload_btn m_text" name="{{post.id}}" data-name="comment"><i class="fas fa-arrow-up"></i></div>
         {% else %}
-        <div class="sprite_heart_icon_outline" name="{{ post.id }}" data-name="heartbeat"><a><i class="fas fa-heart"></i></a> {{ post.like_count }} 개</div>
-        <span id="like-count-{{ post.id }}"> {{ post.like_count }} 개</span>
-        <!--<a><i class="fas fa-heart"></i></a> {{ post.like_count }} 개-->
+        <input type="text" placeholder="댓글달기...">
+        <div class="upload_btn m_text" name="{{post.id}}" data-name="comment" onclick="alert('댓글을 작성하려면 로그인이 필요합니다.')">
+            <i class="fas fa-arrow-up"></i></div>
+        {{ comment_form }}
         {% endif %}
-
     </div>
-    <div class="picReference">
-        <div class="sprite_heart_icon_outline on" name="{{ post.id }}" data-name="Reference"><a><i class="far fa-clone"></i></a></div>
-        <span id="reference-count-{{ post.id }}"> {{ post.Reference_count }} 개</span>
-    </div>
-</div>
-<div class="postNtag">
-    <div class="postTxt">
-        {{ post.content }}
-    </div> 
-    <div class="posttag">
-        <div class="costag">
-            <i class="far fa-grin-squint-tears"></i>
-            {{ post.cosmetic }}
-        </div>
-        <div class="themetag">
-            {{ post.tema }}
-        </div>
-    </div>
-</div>
-<div class="comment_field" id="add-comment-post{{post.id}}">
-    {% if user.is_authenticated %}
-    {{ comment_form }}
-    <input type="text" placeholder="댓글달기...">
-    <div class="upload_btn m_text" name="{{post.id}}" data-name="comment">게시</div>
-    {% else %}
-    <input type="text" placeholder="댓글달기...">
-    <div class="upload_btn m_text" name="{{post.id}}" data-name="comment" onclick="alert('댓글을 작성하려면 로그인이 필요합니다.')">게시</div>
-    {{ comment_form }}
-    {% endif %}
-</div>
-<div class="imgComment">
-    <i class="far fa-comment-dots"></i>
-    <div class="comment" id="comment-ajax-post{{post.id}}">
-        {% for comment in post.comment_set.all %}
-        <div class="comment-detail" id="comment{{ comment.id }}">
-            {% if comment.author.profile.picture.url %}
-            <div class="nick_name"><img src="{{ comment.author.profile.picture.url }}" style="width: 10%;"> {{comment.author.profile.nickname}} {{comment.content}}</div>
-            {% else %}
-            <div class="nick_name"><img src="{% static 'img/noprofile.png' %}" style="width: 10%;"> {{comment.author.profile.nickname}} {{comment.content}}</div>
-            {% endif %}
-            {% if user == comment.author %}
-                <input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{comment.id}}">
-            {% endif %}
-
-        </div>
-        {% endfor %}
-    </div>
-</div>
 
 
 
-{% include "post/script_ajax.html" %}
 
-{% endblock %}
+
+    {% include "post/script_ajax.html" %}
+
+    {% endblock %}

@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'post/base.html' %}
 {% load static %}
-
 {% block content %}
-<form class="searchWindow">
-    <label class="searchLabel"><i class="fas fa-search" id="searchBtn"></i></label>            
-    <input type="text" class="searchInput" placeholder="#태그, 화장품, 컨셉 검색"/>
+<form class="searchWindow" action="search_1" method="get">
+    <input type="text" name="tag" class="searchInput" placeholder="컨셉TAG, 화장
+품 검색" value="{{tag}}" />
+    <button class="searchLabel" type="submit"><i class="fas fa-search"></i></button>
 </form>
 
 <div class="slide-display">
@@ -12,21 +12,25 @@
         <div class="imgslide">
             {% for tema in dint_tema %}
             <div class="title">
-                <p onclick="imageClick(this)">{{tema}}</p>
+                <form action="search_1" method="get">
+                    <button class="tagBtn" type="submit">
+                        {{tema}}
+                    </button>
+                    <input type="text" name="tag" value="{{tema}}"/>
+                </form>
             </div>
-            <div class="carousel-container 1">
-                <div class="carousel-slide 1">
+            <div class="carousel-container">
+                <div class="carousel-slide">
                     {% for post in posts %}
                     {% if tema == post.tema %}
-                    <a href="{% url 'post:post_detail' post.pk %}"><img src="{{ post.photo.url }}" alt="" onclick="imageClick(this)"></a>
+                    <a href="{% url 'post:post_detail' post.pk %}"><img src="{{ post.photo.url }}" alt=""></a>
                     {% endif %}
                     {% endfor %}
-                    <!--<img src="{{ post.photo.url }}" alt="" onclick="imageClick(this)"> 마지막 이미지 추가--> 
                 </div>
             </div>
             {% endfor %}
         </div>
-    </div>     
+    </div>
 </div>
 
 

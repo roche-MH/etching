@@ -1,0 +1,25 @@
+{% extends "post/base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- beautyapp_merged > post > templates > post > personalColor_output.html -->
+    <link rel="stylesheet" href="{% static 'css/imgprocess.css' %}"/>
+    <div class="user-image-container" style="border-radius:30%;">
+        <img id="showImg" src="{% static show %}" class="thunail">
+        <p>사진에서 추출한 피부색은 다음과 같습니다.</p>
+         <div class="Pcolor" style="margin:auto;">
+            <div>턱</div>
+            <div>왼쪽 뺨</div>
+            <div>오른쪽 뺨</div>
+            <div>코</div>
+            <div>눈썹사이</div>
+        </div>
+        <div class="color_chart">
+            <img id="showImg" src="{% static where %}" style="margin:auto;">
+        </div> 
+    <p>색을 분석했을때 {{pc_result}}</p>
+    </div>
+
+    {% comment %} 결과물 출력하기 + CSS 입히기 {% endcomment %}
+
+{% endblock %}

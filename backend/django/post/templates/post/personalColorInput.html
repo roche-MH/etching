@@ -1,0 +1,37 @@
+{% extends "post/base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- beautyapp_merged > post > templates > post > personalColor_output.html -->
+
+    <form method="POST" action="personalColorOut" enctype="multipart/form-data">{% csrf_token %}
+        <div class="file-upload">
+
+            <!-- Source Image Area -->
+            <div class="srcimg-upload-wrap">
+                <input class="file_upload_input_src" type='file' name="srcimg" id="srcimg" onchange="srcURL(srcimg);" accept=".jpg,.png" required>
+                <div class="defaut-upload-image">
+                    <a class="text_center"><img src="{% static 'img/upload_srcimg.PNG' %}" width=80% class="img_center" />Your Color</a>
+                </div>
+            </div>
+            <div class="file-upload-content_src">
+                <img class="file-upload-image_src" src="#" alt="your image" />
+                <button type="button" onclick="removeUpload_src()" class="remove-srcimg">Remove</button>
+            </div>
+            <div class="guide_text">
+                내 퍼스널 컬러를 찾습니다.<br><br>
+                1. 최대한 정면에서 찍은 사진을 사용해 주세요.<br>
+                2. 이마, 눈, 코 입이 잘 보이는 사진을 사용해 주세요.<br>
+                3. 선글라스, 안경 등을 벗어주시고 머리카락이  얼굴을 가리지 않게 해주세요.<br>
+                4. 조명 날씨 등  사진환경에 따라 결과가 다소 부정확할 수 있습니다.<br>
+            </div>
+            <input type="submit" class="file-upload-btn-submit" value="Show Result" />
+        </div>
+    </form>
+
+<script>
+    if ('{{ message }}'){
+    alert('{{ message }}');
+    }
+</script>
+{% endblock %}

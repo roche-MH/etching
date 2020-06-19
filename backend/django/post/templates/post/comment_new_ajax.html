@@ -1,5 +1,5 @@
 <div class="comment-detail" id="comment{{ comment.id }}">
-    <div class="nick_name"><img src="{{ comment.author.profile.picture.url }}" style="width: 10%;"> {{comment.author.profile.nickname}} {{comment.content}}</div>
+    <div class="nick_name"><img src="{{ comment.author.profile.picture.url }}"> {{comment.author.profile.nickname}} {{comment.content}}</div>
     {% if user == comment.author %}
     <input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{ comment.id }}">
     {% endif %}

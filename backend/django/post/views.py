@@ -2,44 +2,201 @@ from django.contrib.auth import get_user_model #유저모델 가져오기
 from django.shortcuts import get_object_or_404, render, redirect # 404 render 기능 불러오기
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from .models import Post, Like, Comment #Post 모델 가져오기
+from .models import Post, Like, Comment, Tema #Post 모델 가져오기
 from .forms import *
 from django.contrib import messages # 메세지 불러오기
 from django.views.generic.list import ListView
 import json
 from django.http import HttpResponse
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Count
+from django.views.generic import TemplateView
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from cv2 import cv2 
 
 
-def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+from django.conf import settings
+from flask import request as rq
+from django.views.decorators.csrf import csrf_exempt
+from .GAN_model import makeupout
+from cv2 import cv2 
+from werkzeug.utils import secure_filename
+
+
+from time import strftime
+from random import choice
+import string
+import os
+######################
+from .Face_model import faceRatio as fr , faceColor as fc
+
+def mysite_pk(request,pk):
+    post = Post
+#    model = Post
+    post_list = Post.objects.all()
+    user =get_object_or_404(get_user_model(), id=pk)
+    user_profile = user.profile
     #comment_form = CommentForm()
 
+    return render(request, 'post/post_profile.html',{
+        #'comment_form': comment_form,
+        'post': post,
+        'post_list': post_list,
+        'user_profile':user_profile,
+    })
+
+class Home(TemplateView):
+    template_name = 'post/home.html'
+
+
+def face_ratio_in(request): # face ratio function input
+    return render(request, 'post/faceRatioInput.html')
+
+def face_ratio_out(request): # face ratio function output    
+    arr = [choice(string.ascii_letters) for _ in range(8)]
+    pid = ''.join(arr)
+    path = settings.BASE_DIR
+    if not os.path.isdir('{}/'.format(strftime(path+'/post/static/img/faceratio/%Y/%m/%d'))):
+        os.makedirs('{}/'.format(strftime(path+'/post/static/img/faceratio/%Y/%m/%d')))
+    src_img = request.FILES['srcimg']
+    frc_name = 'fr_'+str(src_img)
+    src_path = open(path + '/post/static/img/'+frc_name, "wb")
+    for ch in src_img.chunks() :
+        src_path.write(ch)
+    src_path.close()
+    
+    s_path =  path + '/post/static/img/'+frc_name
+    fr_img = fr.faceLandmark81(s_path)
+    fr_result = fr.faceRatio(s_path)
+    if fr_result is None:
+        return render(request,'post/faceRatioInput.html',{ 'message':'다른 사진을 넣어주세요',})
+
+    cv2.imwrite('{}/{}.{}'.format(strftime(path+'/post/static/img/faceratio/%Y/%m/%d'),pid,'JPG'), fr_img)
+    where = '{}//{}.{}'.format(strftime('img/faceratio/%Y/%m/%d'),pid,'JPG')
+    fr_key = fr_result.keys()
+    fr_value = fr_result.values()
+    fr_rs = (fr_key, fr_value)
+    
+    return render(request, 'post/faceRatioOutput.html',{
+        'where' : where,
+        'fr_img' : fr_img,
+        'fr_key' : fr_key,
+        'fr_value' : fr_value,
+        'fr_result' : fr_result,
+        })
+def personal_color_in(request): # personal color detection function input
+    return render(request, 'post/personalColorInput.html')
+
+def personal_color_out(request): # personal color detection function output
+    arr = [choice(string.ascii_letters) for _ in range(8)]
+    pid = ''.join(arr)
+    path = settings.BASE_DIR
+    if not os.path.isdir('{}/'.format(strftime(path+'/post/static/img/personal/%Y/%m/%d'))):
+        os.makedirs('{}/'.format(strftime(path+'/post/static/img/personal/%Y/%m/%d')))
+    src_img = request.FILES['srcimg']
+    src_name = 'pc_'+str(src_img)
+    src_path = open('{}/'.format(strftime(path+'/post/static/img/personal/%Y/%m/%d'))+src_name, "wb")
+
+    for ch in src_img.chunks() :
+        src_path.write(ch)
+    src_path.close()
+    
+    s_path = '{}/'.format(strftime(path+'/post/static/img/personal/%Y/%m/%d'))+src_name
+    show = '{}/'.format(strftime('img/personal/%Y/%m/%d'))+src_name
+    pc_img = fc.face_color(s_path)
+    if pc_img is None:
+        return render(request,'post/personalColorInput.html', {
+            'message':'다른 사진을 넣어주세요',
+    })
+    pc_result = fc.color_predict(s_path)
+    cv2.imwrite('{}/{}.{}'.format(strftime(path+'/post/static/img/personal/%Y/%m/%d'),pid,'JPG'), pc_img)
+    where = '{}/{}.{}'.format(strftime('img/personal/%Y/%m/%d'),pid,'JPG')
+
+    return render(request, 'post/personalColorOutput.html',{
+        'show': show,
+        'where': where,
+        'pc_result' : pc_result[0],
+    })
+
+#####
+
+@login_required
+def image_input(request): # 이미지 업로드 하는 부분
+    return render(request, 'post/imginput.html')
+
+def image_process(request): # 모델에 이미지 넣어서 결과 받아오는 부분
+    arr = [choice(string.ascii_letters) for _ in range(8)]
+    pid = ''.join(arr)
+    path = settings.BASE_DIR
+    if not os.path.isdir('{}/{}/'.format(strftime(path+'/post/static/img/post/%Y/%m/%d'),request.user)):
+        os.makedirs('{}/{}/'.format(strftime(path+'/post/static/img/post/%Y/%m/%d'),request.user))
+    if not os.path.isdir('{}/{}/'.format(strftime('/var/www/beauty/media/post//%Y/%m/%d'),request.user)):
+        os.makedirs('{}/{}/'.format(strftime('/var/www/beauty/media/post//%Y/%m/%d'),request.user))
+    src_img = request.FILES['srcimg'] # src_img 저장
+    src_name = str(src_img)
+    src_path = open(path + '/post/static/img/'+src_name, "wb")
+    for ch in src_img.chunks() :
+        src_path.write(ch)
+    src_path.close()
+
+    ref_img = request.FILES['refimg'] # ref_img 저장
+    ref_name = str(ref_img)
+    ref_path = open(path + '/post/static/img/'+ref_name, "wb")
+    for ch in ref_img.chunks() :
+        ref_path.write(ch)
+    ref_path.close()
+
+    s_path = path + '/post/static/img/'+src_name
+    r_path = path + '/post/static/img/'+ref_name
+    result = makeupout(s_path, r_path)
+    cv2.imwrite('{}/{}/{}.{}'.format(strftime(path+'/post/static/img/post/%Y/%m/%d'),request.user,pid+'1','JPG'), result[0])
+    cv2.imwrite('{}/{}/{}.{}'.format(strftime(path+'/post/static/img/post/%Y/%m/%d'),request.user,pid,'JPG'), result[1])
+    cv2.imwrite('{}/{}/{}.{}'.format(strftime('/var/www/beauty/media'+'/post/%Y/%m/%d'),request.user,pid,'JPG'), result[1])
+    where = '{}/{}/{}.{}'.format(strftime('img/post/%Y/%m/%d'),request.user,pid,'JPG')
+    src = '{}/{}/{}.{}'.format(strftime('img/post/%Y/%m/%d'),request.user,pid+'1','JPG')
+    return render(request, 'post/imgprocess.html',{
+        'name':pid,
+        'src_img':result[0],
+        'where':where,
+        'src':src,
+        'result_img':result[1],
+    })
+
+@login_required
+def image_output(request): # 결과 이미지 보고, text 입력해서 업로드 하는 부분
+    return render(request, 'post/post_new.html')
+
+
+def post_detail(request, pk,tema=None):
+    post = get_object_or_404(Post, pk=pk)
+    #comment_form = CommentForm()
     return render(request, 'post/post_detail.html',{
         #'comment_form': comment_form,
         'post': post,
     })
 
+def post_search(request):
+    post_search = Post.objects.all()
+    tag = request.GET.get('tag', '')
 
-
-
+    if tag:
+        return render(request, 'post/post_search.html', {
+            'tag': tag,
+            'posts': post_search,
+        })
+    else:
+        return render(request, 'post/post_search.html',{
+            'tag': tag,
+            'posts': post_search,
+        })
 
 def post_list(request):
 
-    post_list = Post.objects.all() # model 객체 불러오기
+    post_list = Post.objects.all()
     distinct_tema = set(Post.objects.values_list('tema',flat=True)) # tema 에서 중복 값 제거하기
-    if request.user.is_authenticated:
-        username = request.user
-        user =get_object_or_404(get_user_model(), username=username) # 인증 확인
-        user_profile = user.profile
 
-        return render(request, 'post/post_list.html', { #인증 성공시 user_profile,post_lit,distinct_tema 보내기
-            'user_profile': user_profile,
-            'posts': post_list,
-            'dint_tema':distinct_tema,
-
-        })
-    else:
-        return render(request, 'post/post_list.html',{ #인증 성공시 post_lit,distinct_tema 보내기
+    return render(request, 'post/post_list.html',{ #인증 성공시 post_lit,distinct_tema 보내기
             'posts': post_list,
             'dint_tema':distinct_tema,
         })
@@ -63,19 +220,24 @@ class Myprofile(ListView):
         })
 
 @login_required # 로그인 해야지만 아래 함수 실행됨
-def post_new(request):
+def post_new(request,word):
+    save = '{}/{}/{}.{}'.format(strftime('/post/%Y/%m/%d'),request.user,word,'JPG')
+    picture = '{}/{}/{}.{}'.format(strftime('img/post/%Y/%m/%d'),request.user,word,'JPG')
     if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
+        form = PostForm(request.POST,request.FILES)
+	
         if form.is_valid(): # 폼 내용이 유용하다면 
             post = form.save(commit=False) # commit=false 를 사용하여 중복 방지 하고 저장
             post.author = request.user
+            post.photo = save
             post.save()
-            #post.tag_save()
+            #post.tema_save()
             messages.info(request, '새 글이 등록되었습니다.')
             return redirect('post:post_list')
     else:
         form = PostForm()
     return render(request, 'post/post_new.html',{
+        'picture': picture,
         'form': form,
     })
 
@@ -177,5 +339,6 @@ def comment_delete(request):
         message = '잘못된 접근입니다.'
         status = 0
     return HttpResponse(json.dumps({'message':message, 'status':status, }), content_type="application/json")
+
 
 

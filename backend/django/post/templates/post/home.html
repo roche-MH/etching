@@ -1,0 +1,35 @@
+{% extends 'post/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="banner home">
+  <!--<img src="{% static 'img/simm.jpg' %}" alt="">-->
+</div>
+<a href="{% url 'post:image_input' %}"><div class="wordcloud">
+  <p class="main_title">
+    AI MAKEUP TRANSFER
+    <br>
+    ETCHING
+  </p>
+ <img src="{% static 'img/shadow.jpg' %}" alt="">
+</div></a>
+<div class="faceAnalysis">
+  <div class="tone">
+    <p class="FA_title">
+      퍼스널 컬러 진단
+    </p>
+    <a href="{% url 'post:personal_color_in' %}"><img src="{% static 'img/facetone.png' %}" alt=""></a>
+  </div>
+  <div class="simillar">
+    <p class="FA_title">
+      얼굴 비율 완전 분석
+    </p>
+    <a href="{% url 'post:face_ratio_in' %}"><img src="{% static 'img/faceanalysis.png' %}" alt=""></a>
+  </div>
+</div>
+<div class="banner Event">
+  <a href="https://blog.naver.com/PostList.nhn?blogId=handuelly"><img src="{% static 'img/hdly_banner.png' %}" alt=""></a>
+</div>
+<div class="banner AD">
+</div>
+{% endblock %}

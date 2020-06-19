@@ -1,0 +1,40 @@
+{% extends "post/base.html" %}
+{% load static %}
+
+<script>
+    function rs(){
+        for (i=0; i<7; i++){
+            document.write(fr_key[i], fr_value[i]);
+            //fr_key[i], fr_value[i]
+        }
+    }:
+</script>
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/imgprocess.css' %}"/>
+    <div class="user-image-container">
+        <div class="face-ratio">
+            <img id="showImg" src="{% static where %}" class="thumnail">
+            {% comment %} <img id="showImg" src="{% static 'img/fr_result.jpg' %}" class="thumnail"> {% endcomment %}
+        </div>
+    </div>
+
+    {% comment %} 결과물 출력하기 + CSS 입히기 {% endcomment %}
+    <div class="contain_ratio">
+        <div class="ratio_grid">
+            {% for k in fr_key %}
+            <div class="ratio_key">
+                {{k}}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="ratio_grid">
+            {% for k in fr_value %}
+        <div class="ratio_value">       
+                {{k}}
+        </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

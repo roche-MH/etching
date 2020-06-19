@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/base.css'%}">
+<link rel="stylesheet" href="{% static 'base.css'%}">
 <div class="profile_container">
     <div class="profile_text">
         <div>
@@ -12,14 +12,22 @@
             피부톤 : {{ user_profile.skinton }}
         </div>
         <div>
-            성별 : {{ user_profile.get_gender_display }}
+            성별 : {{ user_profile.gender }}
         </div>
         <div class="fo_btn">
-
-          <a href="{% url 'accounts:profile_edit' user_profile.id %}"><input type="submit" class="settings" value="내정보 수정" data-name="settings" name="{{ post.author.profile.id}}"></a>
+            {% if request.user == user_profile.user %}
+             <a href="{% url 'accounts:profile_edit' user_profile.id %}"><input type="submit" class="settings" value="내정보 수정" data-name="settings" name="{{ post.author.profile.id}}"></a>
+            {% else %}
+                {% if request.user.profile in user_profile.get_follower %}
+                <input type="submit" class="follow" value="Following" data-name="follow" name="{{ user_profile.pk}}">
+                {% else %}
+                <input type="submit" class="follow" value="Follow" data-name="follow" name="{{ user_profile.pk}}">
+                {% endif %}
+            {% endif %}
         </div>
     </div>
-    {% if user_profile %}
+
+    {% if user_profile.picture %}
         <div class="profile_img"><img src="{{ user_profile.picture.url }}" class="img-responsive thumbnail"></div>
     {% else %}
     <div class="profile_img"><img src="{% static 'img/noprofile.png' %}" class="img-responsive thumbnail"></div>
@@ -30,7 +38,7 @@
 </div>
 <div class="social_status">
     <div class="s_status follower">
-        FLLOWERS<br>{{user_profile.follower_count}}
+        FLLOWERS<br>{{user_profile.follower_count}} 
     </div>
     <div class="s_status following">
         FOLLOWING<br>{{user_profile.following_count}}
@@ -52,11 +60,13 @@
 </div>
 
 <div class="imgGrid">
-    {% for post in posts %}
-    {% if user_profile.user == post.author %}
-    <a href="{% url 'post:post_detail' post.pk %}"><img src="{{ post.photo.url }}"></a>
+    {% for post_in in post_list %}
+    {% if user_profile.user == post_in.author %}
+
+    <a href="{% url 'post:post_detail' post_in.pk %}"><img src="{{ post_in.photo.url }}"></a>
     {% endif %}
     {% endfor %}
+
 </div>
 <script>
     function changeCategory(obj){
@@ -67,4 +77,6 @@
         obj.style.border = 'none'; 
     }
 </script>
+
+{% include "post/profile_ajax.html" %}
 {% endblock %}

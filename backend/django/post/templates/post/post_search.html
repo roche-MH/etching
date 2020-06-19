@@ -1,0 +1,36 @@
+{% extends 'post/base.html' %}
+{% load static %}
+
+{% block content %}
+<form class="searchWindow" action="search_1" method="get">
+    <input type="text" name="tag" class="searchInput" placeholder="#태그, 화장품, 컨셉 검색" value="{{tag}}" />
+
+    <button class="searchLabel" type="submit"><i class="fas fa-search"></i></button>
+</form>
+<div class="search_title">
+    컨셉 TAG {{tag}}(으)로 검색한 결과입니다.
+</div>
+<div class="imgGrid">
+    {% for post in posts %}
+    {% if tag == post.tema %}
+    <a href="{% url 'post:post_detail' post.pk %}"><img src="{{ post.photo.url }}" alt=""
+            onclick="imageClick(this)"></a>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<div class="search_title">
+    화장품 {{tag}}(으)로 검색한 결과입니다.
+</div>
+<div class="imgGrid">
+    {% for post in posts %}
+    {% if tag == post.cosmetic %}
+    <a href="{% url 'post:post_detail' post.pk %}"><img src="{{ post.photo.url }}" alt=""
+            onclick="imageClick(this)"></a>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

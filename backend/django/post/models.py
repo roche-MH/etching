@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from imagekit.models import ProcessedImageField # 이미지 불러오기
 from imagekit.processors import ResizeToFill # 사이즈 조절
-
+import re
 def photo_path(instance, filename):
     from time import strftime
     from random import choice
@@ -33,12 +33,22 @@ class Post(models.Model):
 
     content = models.CharField(max_length=255, help_text="최대길이 255자 입력이 가능합니다.", blank=True) # 컨텐츠 입력
     tema = models.CharField('테마',max_length=255, help_text="테마를 입력해주세요,  #테마",blank=True) #테마 입력
+    #tema_set = models.ManyToManyField('tema',blank=True)
     cosmetic = models.CharField('화장품',max_length=255, help_text="사용한 화장품을 입력해주세요, #제품명", blank=True) # 화장품 입력
     created_at = models.DateTimeField(auto_now_add=True) # 최초 저장시에만 현재 날짜를 적용
     updated_at = models.DateTimeField(auto_now=True) # 현재 일시 세팅
 
     class Meta:
         ordering = ['-created_at']
+    
+#    def tema_save(self):
+#        temas = re.findall(r'#(\w+)\b', self.tema,self.cosmetic)
+
+#        if not temas:
+#            return
+#        for t in temas:
+#            tema, tema_created = Tema.objects.get_or_create(name=t)
+#            self.tema_set.add(tema)
 
     @property # 데코레이터 힘들마ㅣㅇ너ㅣ아ㅓ
     def like_count(self):
@@ -84,3 +94,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+class Tema(models.Model):
+    name = models.CharField(max_length=140, unique=True)
+
+    def __str__(self):
+        return self.name

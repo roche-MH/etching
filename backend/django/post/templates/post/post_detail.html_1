@@ -1,0 +1,108 @@
+{% extends 'post/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="detailContainer">
+
+<div class="postContainer">
+<div class="userinfo">
+    <div class="userprofileimg">
+        {% if post.author.profile.picture %}
+        <a href="{% url 'post:post_profile_pk' post.author.pk %}"><img src="{{ post.author.profile.picture.url }}"></a>
+        {% else %}
+        <a href="{% url 'post:post_profile_pk' post.author.pk %}"><img src="{% static 'img/noprofile.png' %}"></a>
+        {% endif %}
+    </div>
+    <div class="userid">
+        {{ post.author.profile.nickname }}
+    </div>
+    
+</div>
+<div class="imgShow">
+    <img src="{{ post.photo.url }}">
+</div>
+<div class="imgPost">:
+    <div class="userID">
+        {{ post.author.profile.nickname }}
+    </div>
+    <div class="picLike">
+        {% if user in post.like_user_set.all %} <!-- class 명 on 으로 해서 값
+ 변경될수 있도록 이미지 분류 필요함 밑에 script_ajax 통신으로 바뀜-->
+        <div class="sprite_heart_icon_outline on" name="{{ post.id }}" data-name="heartbeat"><a><i class="fas fa-heart"></i></a></div>
+        <span id="like-count-{{ post.id }}"> {{ post.like_count }} 개</span>
+        {% else %}
+        <div class="sprite_heart_icon_outline" name="{{ post.id }}" data-name="heartbeat"><a><i class="fas fa-heart"></i></a> {{ post.like_count }} 개</div>
+        <span id="like-count-{{ post.id }}"> {{ post.like_count }} 개</span>
+        <!--<a><i class="fas fa-heart"></i></a> {{ post.like_count }} 개-->
+        {% endif %}
+    </div>
+    <div class="picReference">
+        <div class="sprite_heart_icon_outline on" name="{{ post.id }}" data-name="Reference"><a><i class="far fa-clone"></i></a></div>
+        <span id="reference-count-{{ post.id }}"> {{ post.Reference_count }} 개</span>
+    </div>
+</div>
+<div class="postNtag">
+    <div class="postTxt">
+        {{ post.content }}
+    </div>
+    <div class="posttag">
+        <div class="costag">
+            {{ post.cosmetic }}
+        </div>
+        <div class="themetag">
+            {{ post.tema }}
+        </div>
+    </div>
+</div>
+<div class="imgComment">
+    <div class="comment" id="comment-ajax-post{{post.id}}">
+        {% for comment in post.comment_set.all %}
+        <div class="comment-detail" id="comment{{ comment.id }}">
+            {% if comment.author.profile.picture.url %}
+            <div class="nick_name">
+                <a href="{% url 'post:post_profile_pk' comment.author.pk %}"><img src="{{ comment.author.profile.picture.url }}"></a>
+                <div class="cmt_all">
+                    <span class="cmt_id">{{comment.author.profile.nickname}}</span>
+                    {{comment.content}}
+                </div>
+            </div>
+            {% else %}
+            <div class="nick_name"><img src="{% static 'img/noprofile.png' %}" style="width: 10%;"></a> {{comment.author.profile.nickname}} {{comment.content}}</div>
+
+            <div class="nick_name">
+                <a href="{% url 'post:post_profile_pk' comment.author.pk %}"><img src="{% static 'img/noprofile.png' %}"></a>
+                <div class="cmt_id">
+                    {{comment.author.profile.nickname}}
+                    {{comment.content}}
+                </div>
+
+            </div>
+            {% endif %}
+            {% if user == comment.author %}
+                <input type="button" class="del-comment" data-name="comment_delete" value="삭제" name="{{comment.id}}">
+            {% endif %}
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+<div class="comment_field" id="add-comment-post{{post.id}}">
+    {% if user.is_authenticated %}
+    {{ comment_form }}
+    <a class="cmticon"><i class="far fa-comment-dots"></i></a>
+    <input type="text" placeholder="댓글달기...">
+    <div class="upload_btn m_text" name="{{post.id}}" data-name="comment"><i class="fas fa-arrow-up"></i></div>
+    {% else %}
+
+    <input type="text" placeholder="댓글달기...">
+    <div class="upload_btn m_text" name="{{post.id}}" data-name="comment" onclick="alert('댓글을 작성하려면 로그인이 필요합니다.')"><i class="fas fa-arrow-up"></i></div>
+
+    {{ comment_form }}
+    {% endif %}
+</div>
+
+
+{% include 'post/script_ajax.html' %}
+{% endblock %}
+

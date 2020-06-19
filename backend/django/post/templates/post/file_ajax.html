@@ -1,0 +1,51 @@
+<script type="text/javascript">
+(function(){
+    const delegation = document.querySelector('input[type=file]');
+    const show = document.querySelector('#btn');
+
+    function delegationFunc(e) { // 클릭한거 인자로 받음
+        let elem = e.target;
+        console.log(elem);
+        console.log(elem.accept)
+        console.log(elem.checkValidity())
+        while(!elem.getAttribute('data-name')){
+            elem = elem.parentNode;
+
+            if (elem.nodeName == 'BODY'){
+                elem = null;
+                return;
+            }
+        }if(elem.matches('#id')){
+            var pk = elem.getAttribute('name');
+
+            $.ajax({
+                type: "POST",
+                url: "{% url 'accounts:follow' %}",
+                data: {
+                    'pk': pk,
+                    'csrfmiddlewaretoken': '{{ csrf_token}}',
+                },
+                dataType: "json",
+                success: function(response){
+                    if(response.status){
+                        document.querySelector('input.follow[name=\''+pk+'\']').value="Following";
+                    }else{
+                        document.querySelector('input.follow[name=\''+pk+'\']').value="Follow";
+                    }
+                },
+                error: function(request, status, error){
+                    alert("로그인을 해주세요");
+                }
+            })
+
+        }
+
+        elem.classList.toggle('on');
+    }
+
+
+    delegation.addEventListener('click',delegationFunc);
+
+})();//익명함수 문서가 로드된후에 자바스크립트가 작동한다.
+
+</script>

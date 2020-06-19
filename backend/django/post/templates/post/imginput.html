@@ -1,0 +1,43 @@
+{% extends 'post/base.html' %}
+{% load static %}
+
+{% block content %} 
+<form method="POST" action="imgprocess" enctype="multipart/form-data">{% csrf_token %}
+    <div class="file-upload">
+
+        <!-- Source Image Area -->
+        <div class="srcimg-upload-wrap">
+            <input class="file_upload_input_src" type='file' name="srcimg" id="srcimg" onchange="srcURL(srcimg);" accept=".jpg,.png" required>
+            <div class="defaut-upload-image">
+                <a class="text_center"><img src="{% static 'img/upload_srcimg.PNG' %}" width=80% class="img_center" />내 사진</a>
+            </div>
+        </div>
+        <div class="file-upload-content_src">
+            <img class="file-upload-image_src" src="#" alt="your image" />
+            <button type="button" onclick="removeUpload_src()" class="remove-srcimg">Remove</button>
+        </div>
+
+        <!-- Reference Image Area -->
+        <div class="refimg-upload-wrap">
+            <input class="file_upload_input_ref" type='file' name="refimg" id="refimg" onchange="refURL(refimg);" accept=".jpg,.png" required>
+            <div class="defaut-upload-image">
+                <a class="text_center"><img src="{% static 'img/upload_refimg.PNG' %}" width=80% class="img_center" />메이크업 사진</a>
+            </div>
+        </div>
+        <div class="file-upload-content_ref">
+            <img class="file-upload-image_ref" src="#" alt="your image" />
+            <button type="button" onclick="removeUpload_ref()" class="remove-refimg">Remove
+                <span class="image-title"></span></button>
+        </div>
+        <div class="guide_text">
+        MAKEUP TRANSFER<br>
+        1500 * 1500 이하 사이즈의 사진을 사용해 주세요<br>
+        원하는 사진의 화장을 내 사진으로 옮겨옵니다.<br>
+        1. 화장을 입히고 싶은 내 사진을 넣어주세요.<br>
+        2. 원하는 메이크업의 사진을 넣어주세요.<br>
+        3. show result!<br>
+        </div> 
+        <input type="submit" class="file-upload-btn-submit" value="Show Result" />
+    </div>
+</form>
+{% endblock %}

@@ -1,38 +1,7 @@
-{% extends "base.html" %}
+{% extends "post/base.html" %}
 {% load static %}
 
-{% block content %}
-<div id ="main_container">
-
-    <div class="post_form_container">
-        <form action="" method="post" enctype="multipart/form-data">
-
-            <div class="preview">
-                <label for="id_photo">
-                    <div class="upload">
-                        <div class="post_btn">
-                            <div class="plus_icon">
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <p>업로드 포스트</p>
-                            <canvas id="imageCanvas"></canvas>
-                        </div>
-                    </div>
-                </label>
-            </div>
-            {% csrf_token %}
-            {{ form.as_p }}
-
-            <input type="submit" class="submit_btn" value="저장">
-        </form>
-    </div>
-</div>
-
-
-
 <!-- java 업로드 미리 보기-->
-
 <script>
 var fileinput = document.querySelector("#id_photo") //url 중 id_photo 의 값을 가져오고
 fileinput.addEventListener('change', handleImage);  // 이벤트에 대한 내용을 추적 실행   
@@ -52,8 +21,24 @@ function handleImage(e){
     };
     reader.readAsDataURL(e.target.files[0]); //인풋박스에 들어간 이미지를 담아서 출력
 };
-
 </script>
 
+{% block content %}
+    <!-- beautyapp_merged > post > templates > post > post_new.html -->
+   <link rel="stylesheet" href="{% static 'css/imgprocess.css' %}"/>
 
+    <form action="" method="post" enctype="multipart/form-data">
+
+        <div class="user-image-container">
+            <div class="user-image">
+                <img id="showImg" src="{% static picture %}" class="thumnail">
+            </div>
+        </div>
+
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" class="file-upload-btn-submit" value="  업 로 드" />
+        
+    </form>
 {% endblock %}
