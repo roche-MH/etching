@@ -11,12 +11,15 @@ class LoginForm(forms.ModelForm):
         fields = ["username","password"] # 유저명과 패스워드 가져온다.
 
 class SignupForm(UserCreationForm):
-    username = forms.CharField(label="사용자명", widget=forms.TextInput(attrs={
+    username = forms.CharField(label="아이디", widget=forms.TextInput(attrs={
         'pattern': '[a-zA-Z0-9]+',
         'title': '특수문자, 공백 입력불가',
     }))
 
-    nickname = forms.CharField(label='닉네임')
+    nickname = forms.CharField(label="닉네임", widget=forms.TextInput(attrs={
+        'pattern': '[a-zA-Z0-9]+',
+        'title': '특수문자, 한글, 공백 입력불가',
+    }))
     picture = forms.ImageField(label='프로필 사진', required=False)
 
     class Meta(UserCreationForm.Meta):
@@ -49,3 +52,21 @@ class SignupForm(UserCreationForm):
             picture=self.cleaned_data['picture'],
         )
         return user
+
+## 내정보
+class ProfileForm(forms.ModelForm): # 모델에서 폼 불러오기
+    picture = forms.ImageField(label='', required=False) #중복 표현 x
+    about =forms.CharField(label='한줄소개',widget=forms.Textarea(attrs={ #html 짜기
+        'class': 'post-new-content',
+        'rows': 5,
+        'cols': 50,
+        'placeholder': '255자 까지 등록 가능합니다.'
+    }))
+
+    skinton = forms.CharField(label='피부톤',max_length=2,widget=forms.TextInput(attrs={'placeholder':'피부톤을 입력해주세요'}))
+
+    gender = forms.CharField(label='성별',max_length=2,widget=forms.TextInput(attrs={'placeholder':'성별을 입력해주세요'}))
+
+    class Meta:
+        model = Profile
+        fields = ['picture', 'about','skinton','gender']

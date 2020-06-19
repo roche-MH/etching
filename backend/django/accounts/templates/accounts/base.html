@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V4</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'icon/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+
+<div id="dropDownSelect1"></div>
+<script src="{% static 'js/login.js' %}"></script>
+
+</body>
+</html>
