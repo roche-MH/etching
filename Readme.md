@@ -37,17 +37,11 @@ Use Mobile : Galaxy S10
 
 <img src="https://github.com/roche-MH/etching/blob/master/Mobile_image/%EA%B0%A4_MT.gif?raw=true" alt="S10" style="zoom:15%;"/>
 
-### Personal Color
+### Personal Color , Face Ratio
 
 Use Mobile : iPhone X
 
-<img src="https://github.com/roche-MH/etching/blob/master/Mobile_image/%EC%95%84x_Color.gif?raw=true" alt="아8colorcool" style="zoom:75%;" />
-
-## Face Ratio
-
-Use Mobile : iPhone X
-
-<img src="https://github.com/roche-MH/etching/blob/master/Mobile_image/%EC%95%84x_ratio.gif?raw=true" alt="아x_ratio" style="zoom:75%;" />
+<img src="https://github.com/roche-MH/etching/blob/master/Mobile_image/%EC%95%84x_Color.gif?raw=true" alt="아8colorcool" style="zoom:75%;" /><img src="https://github.com/roche-MH/etching/blob/master/Mobile_image/%EC%95%84x_ratio.gif?raw=true" alt="아x_ratio" style="zoom:75%;" />
 
 ## Login Page, My Page
 
