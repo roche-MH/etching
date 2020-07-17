@@ -35,7 +35,7 @@ Web Service : AWS ec2, apache2, django, mysql,http, javascript, css, bootstrap
 
 Use Mobile : Galaxy S10
 
-<img src="https://github.com/roche-MH/etching/blob/master/Mobile_image/%EA%B0%A4_MT.gif?raw=true" alt="S10" style="zoom:25%;"/>
+<img src="https://github.com/roche-MH/etching/blob/master/Mobile_image/%EA%B0%A4_MT.gif?raw=true" alt="S10" style="zoom:15%;"/>
 
 ### Personal Color
 
