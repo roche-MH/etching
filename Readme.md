@@ -43,7 +43,7 @@ Use Mobile : iPhone X
 
 ### Login Page, Signup Page
 
-<img src="https://github.com/roche-MH/etching/blob/master/image/login.png?raw=true&quot;" alt="image-20200922013326663" style="zoom:67%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/signup.png?raw=true" style="zoom:67%;" />
+<img src="https://github.com/roche-MH/etching/blob/master/image/login.png?raw=true&quot;" alt="image-20200922013326663" style="zoom:50%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/signup.png?raw=true" style="zoom:50%;" />
 
 
 
@@ -51,7 +51,7 @@ Use Mobile : iPhone X
 
 ### List Page, Search Page
 
-<img src="https://github.com/roche-MH/etching/blob/master/image/List.png?raw=true" alt="image-20200922013937044" style="zoom:67%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/tag.png?raw=true" alt="image-20200922013957906" style="zoom:67%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/cosmatic.png?raw=true" alt="image-20200922014048582" style="zoom:67%;" />
+<img src="https://github.com/roche-MH/etching/blob/master/image/List.png?raw=true" alt="image-20200922013937044" style="zoom:50%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/tag.png?raw=true" alt="image-20200922013957906" style="zoom:50%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/cosmatic.png?raw=true" alt="image-20200922014048582" style="zoom:50%;" />
 
 
 
@@ -59,7 +59,7 @@ Use Mobile : iPhone X
 
 ### default Page, My Page(내정보수정),  User Page (Follow, Following)
 
-<img src="https://github.com/roche-MH/etching/blob/master/image/default%20mypage.png?raw=true" alt="image-20200922014340448" style="zoom:67%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/mypage.png?raw=true" alt="image-20200922014959413" style="zoom:67%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/User%20page.png?raw=true" alt="image-20200922014616810" style="zoom:67%;" />
+<img src="https://github.com/roche-MH/etching/blob/master/image/default%20mypage.png?raw=true" alt="image-20200922014340448" style="zoom:50%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/mypage.png?raw=true" alt="image-20200922014959413" style="zoom:50%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/User%20page.png?raw=true" alt="image-20200922014616810" style="zoom:50%;" />
 
 
 
@@ -69,7 +69,7 @@ Use Mobile : iPhone X
 
 
 
-<img src="https://github.com/roche-MH/etching/blob/master/image/default%20postpage.png?raw=true" alt="image-20200922015359147" style="zoom:67%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/Like.png?raw=true" alt="image-20200922015805176" style="zoom:67%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/comment.png?raw=true" alt="image-20200922015415367" style="zoom:67%;" />
+<img src="https://github.com/roche-MH/etching/blob/master/image/default%20postpage.png?raw=true" alt="image-20200922015359147" style="zoom:50%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/Like.png?raw=true" alt="image-20200922015805176" style="zoom:50%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/comment.png?raw=true" alt="image-20200922015415367" style="zoom:50%;" />
 
 
 
@@ -77,4 +77,4 @@ Use Mobile : iPhone X
 
 ### My post edit, My profile edit
 
-<img src="https://github.com/roche-MH/etching/blob/master/image/postedit.png?raw=true" alt="image-20200922020351632" style="zoom:67%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/postedit2.png?raw=true" alt="image-20200922020559011" style="zoom:67%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/profileedit.png?raw=true" alt="image-20200922020414308" style="zoom:67%;" />
+<img src="https://github.com/roche-MH/etching/blob/master/image/postedit.png?raw=true" alt="image-20200922020351632" style="zoom:50%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/postedit2.png?raw=true" alt="image-20200922020559011" style="zoom:50%;" /><img src="https://github.com/roche-MH/etching/blob/master/image/profileedit.png?raw=true" alt="image-20200922020414308" style="zoom:50%;" />
