@@ -2,7 +2,7 @@
 
 ## App introduction
 
-**EG : This app is composed of a web app. It is equipped with skin tone, face ratio, and makeup transfer by receiving the user's image and was built to enable communication between users.**
+**ENG : This app is composed of a web app. It is equipped with skin tone, face ratio, and makeup transfer by receiving the user's image and was built to enable communication between users.**
 
 **KR : 이 앱은 웹앱으로 구성되어 있으며 사용자의 이미지를 입력받아 피부톤,얼굴비율, 화장이전 을 탑재하고 있으며 사용자간 커뮤니케이션을 이룰수 있도록 구축하였습니다. **
 
